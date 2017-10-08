@@ -8,7 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		D20E33411F8A6A680039A027 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33401F8A6A680039A027 /* main.swift */; };
+		D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
+		D20E335A1F8A6B820039A027 /* Array+PermutationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */; };
+		D2815BE41F8A721B00C0DB43 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2815BE21F8A70D800C0DB43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D20E33351F8A6A680039A027 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D20E333C1F8A6A680039A027;
+			remoteInfo = "mi-paa-backpack-problem";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		D20E333B1F8A6A680039A027 /* CopyFiles */ = {
@@ -25,10 +38,21 @@
 /* Begin PBXFileReference section */
 		D20E333D1F8A6A680039A027 /* mi-paa-backpack-problem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "mi-paa-backpack-problem"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E33401F8A6A680039A027 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D20E33481F8A6AA70039A027 /* Array+Permutations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Permutations.swift"; sourceTree = "<group>"; };
+		D20E334E1F8A6B140039A027 /* mi-paa-backpack-problemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mi-paa-backpack-problemTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D20E33521F8A6B140039A027 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+PermutationsTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D20E333A1F8A6A680039A027 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D20E334B1F8A6B140039A027 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				D20E333F1F8A6A680039A027 /* mi-paa-backpack-problem */,
+				D20E334F1F8A6B140039A027 /* mi-paa-backpack-problemTests */,
 				D20E333E1F8A6A680039A027 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				D20E333D1F8A6A680039A027 /* mi-paa-backpack-problem */,
+				D20E334E1F8A6B140039A027 /* mi-paa-backpack-problemTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +83,35 @@
 		D20E333F1F8A6A680039A027 /* mi-paa-backpack-problem */ = {
 			isa = PBXGroup;
 			children = (
+				D20E33471F8A6A8D0039A027 /* Extensions */,
 				D20E33401F8A6A680039A027 /* main.swift */,
 			);
 			path = "mi-paa-backpack-problem";
+			sourceTree = "<group>";
+		};
+		D20E33471F8A6A8D0039A027 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D20E33481F8A6AA70039A027 /* Array+Permutations.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D20E334F1F8A6B140039A027 /* mi-paa-backpack-problemTests */ = {
+			isa = PBXGroup;
+			children = (
+				D20E33561F8A6B220039A027 /* Extensions */,
+				D20E33521F8A6B140039A027 /* Info.plist */,
+			);
+			path = "mi-paa-backpack-problemTests";
+			sourceTree = "<group>";
+		};
+		D20E33561F8A6B220039A027 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,6 +134,24 @@
 			productReference = D20E333D1F8A6A680039A027 /* mi-paa-backpack-problem */;
 			productType = "com.apple.product-type.tool";
 		};
+		D20E334D1F8A6B140039A027 /* mi-paa-backpack-problemTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D20E33531F8A6B140039A027 /* Build configuration list for PBXNativeTarget "mi-paa-backpack-problemTests" */;
+			buildPhases = (
+				D20E334A1F8A6B140039A027 /* Sources */,
+				D20E334B1F8A6B140039A027 /* Frameworks */,
+				D20E334C1F8A6B140039A027 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2815BE31F8A70D800C0DB43 /* PBXTargetDependency */,
+			);
+			name = "mi-paa-backpack-problemTests";
+			productName = "mi-paa-backpack-problemTests";
+			productReference = D20E334E1F8A6B140039A027 /* mi-paa-backpack-problemTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -94,6 +164,11 @@
 				TargetAttributes = {
 					D20E333C1F8A6A680039A027 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					D20E334D1F8A6B140039A027 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -111,20 +186,49 @@
 			projectRoot = "";
 			targets = (
 				D20E333C1F8A6A680039A027 /* mi-paa-backpack-problem */,
+				D20E334D1F8A6B140039A027 /* mi-paa-backpack-problemTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D20E334C1F8A6B140039A027 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D20E33391F8A6A680039A027 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */,
 				D20E33411F8A6A680039A027 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D20E334A1F8A6B140039A027 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2815BE41F8A721B00C0DB43 /* Array+Permutations.swift in Sources */,
+				D20E335A1F8A6B820039A027 /* Array+PermutationsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2815BE31F8A70D800C0DB43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D20E333C1F8A6A680039A027 /* mi-paa-backpack-problem */;
+			targetProxy = D2815BE21F8A70D800C0DB43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D20E33421F8A6A680039A027 /* Debug */ = {
@@ -251,6 +355,35 @@
 			};
 			name = Release;
 		};
+		D20E33541F8A6B140039A027 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "mi-paa-backpack-problemTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.josefdolezal.mi-paa-backpack-problemTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		D20E33551F8A6B140039A027 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "mi-paa-backpack-problemTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.josefdolezal.mi-paa-backpack-problemTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -268,6 +401,15 @@
 			buildConfigurations = (
 				D20E33451F8A6A680039A027 /* Debug */,
 				D20E33461F8A6A680039A027 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D20E33531F8A6B140039A027 /* Build configuration list for PBXNativeTarget "mi-paa-backpack-problemTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D20E33541F8A6B140039A027 /* Debug */,
+				D20E33551F8A6B140039A027 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
