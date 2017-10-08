@@ -11,6 +11,7 @@
 		D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
 		D20E335A1F8A6B820039A027 /* Array+PermutationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */; };
 		D2815BE41F8A721B00C0DB43 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
+		D2815BE71F8A7EA000C0DB43 /* BackpackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		D20E334E1F8A6B140039A027 /* mi-paa-backpack-problemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mi-paa-backpack-problemTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E33521F8A6B140039A027 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+PermutationsTests.swift"; sourceTree = "<group>"; };
+		D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				D20E33471F8A6A8D0039A027 /* Extensions */,
+				D2815BE51F8A7E8600C0DB43 /* Model */,
 				D20E33401F8A6A680039A027 /* main.swift */,
 			);
 			path = "mi-paa-backpack-problem";
@@ -112,6 +115,14 @@
 				D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D2815BE51F8A7E8600C0DB43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2815BE71F8A7EA000C0DB43 /* BackpackItem.swift in Sources */,
 				D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */,
 				D20E33411F8A6A680039A027 /* main.swift in Sources */,
 			);
