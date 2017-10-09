@@ -12,6 +12,12 @@
 		D20E335A1F8A6B820039A027 /* Array+PermutationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */; };
 		D2815BE41F8A721B00C0DB43 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
 		D2815BE71F8A7EA000C0DB43 /* BackpackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */; };
+		D2815BEA1F8A7F2900C0DB43 /* Backpack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BE91F8A7F2900C0DB43 /* Backpack.swift */; };
+		D2815BEC1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BEB1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift */; };
+		D2815BED1F8A869100C0DB43 /* BackpackFittingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BEB1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift */; };
+		D2815BEE1F8A869A00C0DB43 /* BackpackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */; };
+		D2815BF11F8A86C500C0DB43 /* BackPackFittingStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BF01F8A86C500C0DB43 /* BackPackFittingStrategyTests.swift */; };
+		D2815BF21F8A887800C0DB43 /* Backpack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BE91F8A7F2900C0DB43 /* Backpack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,9 @@
 		D20E33521F8A6B140039A027 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+PermutationsTests.swift"; sourceTree = "<group>"; };
 		D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackItem.swift; sourceTree = "<group>"; };
+		D2815BE91F8A7F2900C0DB43 /* Backpack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backpack.swift; sourceTree = "<group>"; };
+		D2815BEB1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackFittingStrategy.swift; sourceTree = "<group>"; };
+		D2815BF01F8A86C500C0DB43 /* BackPackFittingStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackFittingStrategyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +96,7 @@
 			children = (
 				D20E33471F8A6A8D0039A027 /* Extensions */,
 				D2815BE51F8A7E8600C0DB43 /* Model */,
+				D2815BE81F8A7EF100C0DB43 /* Utility */,
 				D20E33401F8A6A680039A027 /* main.swift */,
 			);
 			path = "mi-paa-backpack-problem";
@@ -104,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				D20E33561F8A6B220039A027 /* Extensions */,
+				D2815BEF1F8A86A200C0DB43 /* Utility */,
 				D20E33521F8A6B140039A027 /* Info.plist */,
 			);
 			path = "mi-paa-backpack-problemTests";
@@ -123,6 +134,23 @@
 				D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D2815BE81F8A7EF100C0DB43 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D2815BEB1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift */,
+				D2815BE91F8A7F2900C0DB43 /* Backpack.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		D2815BEF1F8A86A200C0DB43 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D2815BF01F8A86C500C0DB43 /* BackPackFittingStrategyTests.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2815BE71F8A7EA000C0DB43 /* BackpackItem.swift in Sources */,
+				D2815BEA1F8A7F2900C0DB43 /* Backpack.swift in Sources */,
+				D2815BEC1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift in Sources */,
 				D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */,
 				D20E33411F8A6A680039A027 /* main.swift in Sources */,
 			);
@@ -227,8 +257,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2815BF11F8A86C500C0DB43 /* BackPackFittingStrategyTests.swift in Sources */,
+				D2815BF21F8A887800C0DB43 /* Backpack.swift in Sources */,
+				D2815BEE1F8A869A00C0DB43 /* BackpackItem.swift in Sources */,
 				D2815BE41F8A721B00C0DB43 /* Array+Permutations.swift in Sources */,
 				D20E335A1F8A6B820039A027 /* Array+PermutationsTests.swift in Sources */,
+				D2815BED1F8A869100C0DB43 /* BackpackFittingStrategy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
