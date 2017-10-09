@@ -23,7 +23,7 @@ class BackPackFittingStrategyTests: XCTestCase {
         let backpack = Backpack(maxWeight: 50)
         let subject = backpack.fit(items: backpackItems, using: AllCasesBackpackFittingStrategy.self)
 
-        XCTAssertEqual(subject.value, 46)
+        XCTAssertEqual(subject.value, 61)
     }
 
 }
