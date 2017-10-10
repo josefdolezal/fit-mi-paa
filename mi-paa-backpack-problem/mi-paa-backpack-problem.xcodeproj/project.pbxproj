@@ -10,6 +10,9 @@
 		D20E33411F8A6A680039A027 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33401F8A6A680039A027 /* main.swift */; };
 		D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
 		D20E335A1F8A6B820039A027 /* Array+PermutationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */; };
+		D22072CE1F8D584500C8FF53 /* Array+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072CD1F8D584500C8FF53 /* Array+Operators.swift */; };
+		D22072CF1F8D596700C8FF53 /* Array+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072CD1F8D584500C8FF53 /* Array+Operators.swift */; };
+		D22072D31F8D59A700C8FF53 /* Array+OperatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */; };
 		D2815BE41F8A721B00C0DB43 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
 		D2815BE71F8A7EA000C0DB43 /* BackpackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */; };
 		D2815BEA1F8A7F2900C0DB43 /* Backpack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BE91F8A7F2900C0DB43 /* Backpack.swift */; };
@@ -49,6 +52,8 @@
 		D20E334E1F8A6B140039A027 /* mi-paa-backpack-problemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mi-paa-backpack-problemTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E33521F8A6B140039A027 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+PermutationsTests.swift"; sourceTree = "<group>"; };
+		D22072CD1F8D584500C8FF53 /* Array+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Operators.swift"; sourceTree = "<group>"; };
+		D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+OperatorsTests.swift"; sourceTree = "<group>"; };
 		D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackItem.swift; sourceTree = "<group>"; };
 		D2815BE91F8A7F2900C0DB43 /* Backpack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backpack.swift; sourceTree = "<group>"; };
 		D2815BEB1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackFittingStrategy.swift; sourceTree = "<group>"; };
@@ -106,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				D20E33481F8A6AA70039A027 /* Array+Permutations.swift */,
+				D22072CD1F8D584500C8FF53 /* Array+Operators.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -124,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */,
+				D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 				D2815BE71F8A7EA000C0DB43 /* BackpackItem.swift in Sources */,
 				D2815BEA1F8A7F2900C0DB43 /* Backpack.swift in Sources */,
 				D2815BEC1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift in Sources */,
+				D22072CE1F8D584500C8FF53 /* Array+Operators.swift in Sources */,
 				D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */,
 				D20E33411F8A6A680039A027 /* main.swift in Sources */,
 			);
@@ -257,6 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22072CF1F8D596700C8FF53 /* Array+Operators.swift in Sources */,
+				D22072D31F8D59A700C8FF53 /* Array+OperatorsTests.swift in Sources */,
 				D2815BF11F8A86C500C0DB43 /* BackPackFittingStrategyTests.swift in Sources */,
 				D2815BF21F8A887800C0DB43 /* Backpack.swift in Sources */,
 				D2815BEE1F8A869A00C0DB43 /* BackpackItem.swift in Sources */,
