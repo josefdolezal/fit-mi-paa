@@ -11,16 +11,16 @@ import XCTest
 class BackpackProblemSolutionTests: XCTestCase {
 
     func testPropertiesAreInitializedCorrectly() {
-        let subject = BackpackProblemSolution(id: "01", backpackWeight: 100)
+        let subject = BackpackProblemSolution(id: "01", backpackValue: 100)
 
         XCTAssertEqual(subject.id, "01")
-        XCTAssertEqual(subject.backpackWeight, 100)
+        XCTAssertEqual(subject.backpackValue, 100)
     }
 
     func testPlainTextParsing() {
         let subject = try! BackpackProblemSolution(plainText: "9000 4 473  1 1 0 1")
 
         XCTAssertEqual(subject.id, "9000")
-        XCTAssertEqual(subject.backpackWeight, 473)
+        XCTAssertEqual(subject.backpackValue, 473)
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 struct BackpackProblemSolution {
     let id: String
-    let backpackWeight: Int
+    let backpackValue: Int
 }
 
 extension BackpackProblemSolution: Readable {
@@ -19,11 +19,11 @@ extension BackpackProblemSolution: Readable {
 
         guard
             let id = components.first,
-            let backpackWeight = Int(components[2])
+            let backpackValue = Int(components[2])
         else {
             throw BackpackInstanceReaderError.invalidData(plainText)
         }
 
-        self.init(id: id, backpackWeight: backpackWeight)
+        self.init(id: id, backpackValue: backpackValue)
     }
 }
