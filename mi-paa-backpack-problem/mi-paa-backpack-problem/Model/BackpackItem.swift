@@ -17,3 +17,15 @@ class BackpackItem {
         self.weight = weight
     }
 }
+
+extension BackpackItem: Equatable {
+    static func ==(lhs: BackpackItem, rhs: BackpackItem) -> Bool {
+        return lhs.value == rhs.value && lhs.weight == rhs.weight
+    }
+}
+
+extension BackpackItem: CustomStringConvertible {
+    var description: String {
+        return "(\(value), \(weight))"
+    }
+}
