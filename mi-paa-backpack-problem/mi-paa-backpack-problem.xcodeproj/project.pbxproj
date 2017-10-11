@@ -11,6 +11,8 @@
 		D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
 		D20E335A1F8A6B820039A027 /* Array+PermutationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */; };
 		D217A4BF1F8E71B600BF2E94 /* FileManager+FileManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217A4BE1F8E71B600BF2E94 /* FileManager+FileManagerType.swift */; };
+		D217A4C11F8E739000BF2E94 /* Input in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22073051F8E70F300C8FF53 /* Input */; };
+		D217A4C21F8E739000BF2E94 /* Output in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22073061F8E70F400C8FF53 /* Output */; };
 		D22072CE1F8D584500C8FF53 /* Array+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072CD1F8D584500C8FF53 /* Array+Operators.swift */; };
 		D22072CF1F8D596700C8FF53 /* Array+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072CD1F8D584500C8FF53 /* Array+Operators.swift */; };
 		D22072D31F8D59A700C8FF53 /* Array+OperatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */; };
@@ -45,14 +47,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D20E333B1F8A6A680039A027 /* CopyFiles */ = {
+		D217A4C01F8E736A00BF2E94 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 6;
 			files = (
+				D217A4C11F8E739000BF2E94 /* Input in CopyFiles */,
+				D217A4C21F8E739000BF2E94 /* Output in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -66,30 +70,6 @@
 		D217A4BE1F8E71B600BF2E94 /* FileManager+FileManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+FileManagerType.swift"; sourceTree = "<group>"; };
 		D22072CD1F8D584500C8FF53 /* Array+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Operators.swift"; sourceTree = "<group>"; };
 		D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+OperatorsTests.swift"; sourceTree = "<group>"; };
-		D22072D71F8D743600C8FF53 /* knap_20.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_20.txt; sourceTree = "<group>"; };
-		D22072D81F8D743600C8FF53 /* knap_32.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_32.txt; sourceTree = "<group>"; };
-		D22072D91F8D743600C8FF53 /* knap_37.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_37.txt; sourceTree = "<group>"; };
-		D22072DA1F8D743600C8FF53 /* knap_40.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_40.txt; sourceTree = "<group>"; };
-		D22072DB1F8D743600C8FF53 /* knap_4.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_4.txt; sourceTree = "<group>"; };
-		D22072DC1F8D743600C8FF53 /* knap_10.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_10.txt; sourceTree = "<group>"; };
-		D22072DD1F8D743600C8FF53 /* knap_30.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_30.txt; sourceTree = "<group>"; };
-		D22072DE1F8D743600C8FF53 /* knap_35.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_35.txt; sourceTree = "<group>"; };
-		D22072DF1F8D743600C8FF53 /* knap_22.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_22.txt; sourceTree = "<group>"; };
-		D22072E01F8D743600C8FF53 /* knap_15.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_15.txt; sourceTree = "<group>"; };
-		D22072E11F8D743600C8FF53 /* knap_25.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_25.txt; sourceTree = "<group>"; };
-		D22072E21F8D743600C8FF53 /* knap_27.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_27.txt; sourceTree = "<group>"; };
-		D22072E31F8D745000C8FF53 /* knap_15.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_15.txt; sourceTree = "<group>"; };
-		D22072E41F8D745000C8FF53 /* knap_30.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_30.txt; sourceTree = "<group>"; };
-		D22072E51F8D745000C8FF53 /* knap_22.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_22.txt; sourceTree = "<group>"; };
-		D22072E61F8D745000C8FF53 /* knap_32.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_32.txt; sourceTree = "<group>"; };
-		D22072E71F8D745000C8FF53 /* knap_35.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_35.txt; sourceTree = "<group>"; };
-		D22072E81F8D745000C8FF53 /* knap_20.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_20.txt; sourceTree = "<group>"; };
-		D22072E91F8D745000C8FF53 /* knap_4.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_4.txt; sourceTree = "<group>"; };
-		D22072EA1F8D745000C8FF53 /* knap_25.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_25.txt; sourceTree = "<group>"; };
-		D22072EB1F8D745000C8FF53 /* knap_10.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_10.txt; sourceTree = "<group>"; };
-		D22072EC1F8D745000C8FF53 /* knap_27.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_27.txt; sourceTree = "<group>"; };
-		D22072ED1F8D745100C8FF53 /* knap_37.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_37.txt; sourceTree = "<group>"; };
-		D22072EE1F8D745100C8FF53 /* knap_40.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_40.txt; sourceTree = "<group>"; };
 		D22072EF1F8D74BC00C8FF53 /* BackpackInstanceReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackInstanceReader.swift; sourceTree = "<group>"; };
 		D22072F11F8E2C8700C8FF53 /* BackpackInstanceReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackInstanceReaderTests.swift; sourceTree = "<group>"; };
 		D22072F51F8E32E900C8FF53 /* BackpackItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackItemTests.swift; sourceTree = "<group>"; };
@@ -97,6 +77,8 @@
 		D22072FA1F8E693C00C8FF53 /* BackpackProblemInstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackProblemInstanceTests.swift; sourceTree = "<group>"; };
 		D22072FC1F8E6E5F00C8FF53 /* BackpackProblemSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackProblemSolution.swift; sourceTree = "<group>"; };
 		D22073011F8E6FE000C8FF53 /* BackpackProblemSolutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackProblemSolutionTests.swift; sourceTree = "<group>"; };
+		D22073051F8E70F300C8FF53 /* Input */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Input; path = "mi-paa-backpack-problem/Sample/Input"; sourceTree = "<group>"; };
+		D22073061F8E70F400C8FF53 /* Output */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Output; path = "mi-paa-backpack-problem/Sample/Output"; sourceTree = "<group>"; };
 		D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackItem.swift; sourceTree = "<group>"; };
 		D2815BE91F8A7F2900C0DB43 /* Backpack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backpack.swift; sourceTree = "<group>"; };
 		D2815BEB1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackFittingStrategy.swift; sourceTree = "<group>"; };
@@ -124,6 +106,8 @@
 		D20E33341F8A6A680039A027 = {
 			isa = PBXGroup;
 			children = (
+				D22073051F8E70F300C8FF53 /* Input */,
+				D22073061F8E70F400C8FF53 /* Output */,
 				D20E333F1F8A6A680039A027 /* mi-paa-backpack-problem */,
 				D20E334F1F8A6B140039A027 /* mi-paa-backpack-problemTests */,
 				D20E333E1F8A6A680039A027 /* Products */,
@@ -142,7 +126,6 @@
 		D20E333F1F8A6A680039A027 /* mi-paa-backpack-problem */ = {
 			isa = PBXGroup;
 			children = (
-				D22072D41F8D70A900C8FF53 /* Sample */,
 				D20E33471F8A6A8D0039A027 /* Extensions */,
 				D2815BE51F8A7E8600C0DB43 /* Model */,
 				D2815BE81F8A7EF100C0DB43 /* Utility */,
@@ -179,53 +162,6 @@
 				D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		D22072D41F8D70A900C8FF53 /* Sample */ = {
-			isa = PBXGroup;
-			children = (
-				D22072D51F8D70B400C8FF53 /* Input */,
-				D22072D61F8D70BA00C8FF53 /* Output */,
-			);
-			path = Sample;
-			sourceTree = "<group>";
-		};
-		D22072D51F8D70B400C8FF53 /* Input */ = {
-			isa = PBXGroup;
-			children = (
-				D22072DB1F8D743600C8FF53 /* knap_4.txt */,
-				D22072DC1F8D743600C8FF53 /* knap_10.txt */,
-				D22072E01F8D743600C8FF53 /* knap_15.txt */,
-				D22072D71F8D743600C8FF53 /* knap_20.txt */,
-				D22072DF1F8D743600C8FF53 /* knap_22.txt */,
-				D22072E11F8D743600C8FF53 /* knap_25.txt */,
-				D22072E21F8D743600C8FF53 /* knap_27.txt */,
-				D22072DD1F8D743600C8FF53 /* knap_30.txt */,
-				D22072D81F8D743600C8FF53 /* knap_32.txt */,
-				D22072DE1F8D743600C8FF53 /* knap_35.txt */,
-				D22072D91F8D743600C8FF53 /* knap_37.txt */,
-				D22072DA1F8D743600C8FF53 /* knap_40.txt */,
-			);
-			path = Input;
-			sourceTree = "<group>";
-		};
-		D22072D61F8D70BA00C8FF53 /* Output */ = {
-			isa = PBXGroup;
-			children = (
-				D22072E91F8D745000C8FF53 /* knap_4.txt */,
-				D22072EB1F8D745000C8FF53 /* knap_10.txt */,
-				D22072E31F8D745000C8FF53 /* knap_15.txt */,
-				D22072E81F8D745000C8FF53 /* knap_20.txt */,
-				D22072E51F8D745000C8FF53 /* knap_22.txt */,
-				D22072EA1F8D745000C8FF53 /* knap_25.txt */,
-				D22072EC1F8D745000C8FF53 /* knap_27.txt */,
-				D22072E41F8D745000C8FF53 /* knap_30.txt */,
-				D22072E61F8D745000C8FF53 /* knap_32.txt */,
-				D22072E71F8D745000C8FF53 /* knap_35.txt */,
-				D22072ED1F8D745100C8FF53 /* knap_37.txt */,
-				D22072EE1F8D745100C8FF53 /* knap_40.txt */,
-			);
-			path = Output;
 			sourceTree = "<group>";
 		};
 		D22072F41F8E32D200C8FF53 /* Model */ = {
@@ -276,7 +212,7 @@
 			buildPhases = (
 				D20E33391F8A6A680039A027 /* Sources */,
 				D20E333A1F8A6A680039A027 /* Frameworks */,
-				D20E333B1F8A6A680039A027 /* CopyFiles */,
+				D217A4C01F8E736A00BF2E94 /* CopyFiles */,
 			);
 			buildRules = (
 			);

@@ -8,5 +8,7 @@
 
 import Foundation
 
-print("Hello, World!")
+let filesReader = BackpackInstanceReader(fileManager: FileManager.default)
 
+let instances = try! filesReader.readFiles(at: URL(string: "./Input")!, ofType: BackpackProblemInstance.self)
+let solutions = try! filesReader.readFiles(at: URL(string: "Output")!, ofType: BackpackProblemSolution.self)
