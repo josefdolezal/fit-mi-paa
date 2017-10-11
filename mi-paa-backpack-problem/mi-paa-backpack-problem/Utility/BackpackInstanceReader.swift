@@ -34,7 +34,7 @@ class BackpackInstanceReader {
         let files = try fileManager.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
 
         return files.flatMap { fileURL in
-            guard let fileData = fileManager.contents(atPath: fileURL.absoluteString) else {
+            guard let fileData = fileManager.contents(atPath: fileURL.path) else {
                 return nil
             }
 
@@ -42,7 +42,9 @@ class BackpackInstanceReader {
         }.map { fileContent in
             let lines = fileContent.components(separatedBy: "\n")
 
-            return lines.flatMap { try? type.init(plainText: $0) }
+            return lines
+                .filter { $0.characters.count > 0 }
+                .flatMap { try? type.init(plainText: $0) }
         }
     }
 }

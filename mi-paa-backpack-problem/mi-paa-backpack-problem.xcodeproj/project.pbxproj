@@ -10,6 +10,7 @@
 		D20E33411F8A6A680039A027 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33401F8A6A680039A027 /* main.swift */; };
 		D20E33491F8A6AA70039A027 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
 		D20E335A1F8A6B820039A027 /* Array+PermutationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */; };
+		D217A4BF1F8E71B600BF2E94 /* FileManager+FileManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217A4BE1F8E71B600BF2E94 /* FileManager+FileManagerType.swift */; };
 		D22072CE1F8D584500C8FF53 /* Array+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072CD1F8D584500C8FF53 /* Array+Operators.swift */; };
 		D22072CF1F8D596700C8FF53 /* Array+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072CD1F8D584500C8FF53 /* Array+Operators.swift */; };
 		D22072D31F8D59A700C8FF53 /* Array+OperatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */; };
@@ -62,6 +63,7 @@
 		D20E334E1F8A6B140039A027 /* mi-paa-backpack-problemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mi-paa-backpack-problemTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E33521F8A6B140039A027 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D20E33591F8A6B820039A027 /* Array+PermutationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+PermutationsTests.swift"; sourceTree = "<group>"; };
+		D217A4BE1F8E71B600BF2E94 /* FileManager+FileManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+FileManagerType.swift"; sourceTree = "<group>"; };
 		D22072CD1F8D584500C8FF53 /* Array+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Operators.swift"; sourceTree = "<group>"; };
 		D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+OperatorsTests.swift"; sourceTree = "<group>"; };
 		D22072D71F8D743600C8FF53 /* knap_20.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_20.txt; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				D20E33481F8A6AA70039A027 /* Array+Permutations.swift */,
 				D22072CD1F8D584500C8FF53 /* Array+Operators.swift */,
+				D217A4BE1F8E71B600BF2E94 /* FileManager+FileManagerType.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2815BE71F8A7EA000C0DB43 /* BackpackItem.swift in Sources */,
+				D217A4BF1F8E71B600BF2E94 /* FileManager+FileManagerType.swift in Sources */,
 				D2815BEA1F8A7F2900C0DB43 /* Backpack.swift in Sources */,
 				D22072F01F8D74BC00C8FF53 /* BackpackInstanceReader.swift in Sources */,
 				D2815BEC1F8A7F4300C0DB43 /* BackpackFittingStrategy.swift in Sources */,
