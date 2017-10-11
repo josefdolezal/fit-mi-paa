@@ -13,6 +13,9 @@
 		D22072CE1F8D584500C8FF53 /* Array+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072CD1F8D584500C8FF53 /* Array+Operators.swift */; };
 		D22072CF1F8D596700C8FF53 /* Array+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072CD1F8D584500C8FF53 /* Array+Operators.swift */; };
 		D22072D31F8D59A700C8FF53 /* Array+OperatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072D21F8D59A700C8FF53 /* Array+OperatorsTests.swift */; };
+		D22072F01F8D74BC00C8FF53 /* BackpackInstanceReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072EF1F8D74BC00C8FF53 /* BackpackInstanceReader.swift */; };
+		D22072F21F8E2C8700C8FF53 /* BackpackInstanceReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072F11F8E2C8700C8FF53 /* BackpackInstanceReaderTests.swift */; };
+		D22072F31F8E2CD300C8FF53 /* BackpackInstanceReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072EF1F8D74BC00C8FF53 /* BackpackInstanceReader.swift */; };
 		D22072F61F8E32E900C8FF53 /* BackpackItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22072F51F8E32E900C8FF53 /* BackpackItemTests.swift */; };
 		D2815BE41F8A721B00C0DB43 /* Array+Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E33481F8A6AA70039A027 /* Array+Permutations.swift */; };
 		D2815BE71F8A7EA000C0DB43 /* BackpackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */; };
@@ -79,6 +82,8 @@
 		D22072EC1F8D745000C8FF53 /* knap_27.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_27.txt; sourceTree = "<group>"; };
 		D22072ED1F8D745100C8FF53 /* knap_37.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_37.txt; sourceTree = "<group>"; };
 		D22072EE1F8D745100C8FF53 /* knap_40.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = knap_40.txt; sourceTree = "<group>"; };
+		D22072EF1F8D74BC00C8FF53 /* BackpackInstanceReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackInstanceReader.swift; sourceTree = "<group>"; };
+		D22072F11F8E2C8700C8FF53 /* BackpackInstanceReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackInstanceReaderTests.swift; sourceTree = "<group>"; };
 		D22072F51F8E32E900C8FF53 /* BackpackItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackItemTests.swift; sourceTree = "<group>"; };
 		D2815BE61F8A7EA000C0DB43 /* BackpackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackItem.swift; sourceTree = "<group>"; };
 		D2815BE91F8A7F2900C0DB43 /* Backpack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backpack.swift; sourceTree = "<group>"; };
