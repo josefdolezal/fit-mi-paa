@@ -26,7 +26,7 @@ class BackpackInstanceReaderTests: XCTestCase {
     }
 
     func testAllInstancesAreReadProperly() {
-        let instances = try! subject.readInstances(at: URL(string: "/")!)
+        let instances = try! subject.readFiles(at: URL(string: "/")!, ofType: BackpackProblemInstance.self)
 
         XCTAssertEqual(self.instances.count, instances.count)
 

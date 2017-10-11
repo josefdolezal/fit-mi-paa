@@ -17,6 +17,10 @@ protocol FileManagerType {
     func contents(atPath path: String) -> Data?
 }
 
+protocol Readable {
+    init(plainText: String) throws
+}
+
 class BackpackInstanceReader {
 
     private let fileManager: FileManagerType
@@ -25,11 +29,11 @@ class BackpackInstanceReader {
         self.fileManager = fileManager
     }
 
-    func readInstances(at folder: URL) throws -> [[BackpackProblemInstance]] {
+    func readFiles<LineObject: Readable>(at folder: URL, ofType type: LineObject.Type) throws -> [[LineObject]] {
         let fileManager = self.fileManager
         let files = try fileManager.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
 
-        return try files.flatMap { fileURL in
+        return files.flatMap { fileURL in
             guard let fileData = fileManager.contents(atPath: fileURL.absoluteString) else {
                 return nil
             }
@@ -38,33 +42,7 @@ class BackpackInstanceReader {
         }.map { fileContent in
             let lines = fileContent.components(separatedBy: "\n")
 
-            return try lines.flatMap { [weak self] line in try self?.createInstance(input: line) }
+            return lines.flatMap { try? type.init(plainText: $0) }
         }
-    }
-
-    private func createInstance(input: String) throws -> BackpackProblemInstance {
-        let components = input.components(separatedBy: " ")
-        let itemStartIndex = 3
-        var items = [BackpackItem]()
-
-        guard
-            let id = components.first,
-            let maxWeight = Int(components[2])
-        else {
-            throw BackpackInstanceReaderError.invalidData(input)
-        }
-
-        for i in stride(from: itemStartIndex, to: components.count, by: 2) {
-            guard
-                let weight = Int(components[i]),
-                let value = Int(components[i+1])
-            else {
-                throw BackpackInstanceReaderError.invalidData(input)
-            }
-
-            items.append(BackpackItem(value: value, weight: weight))
-        }
-
-        return BackpackProblemInstance(id: id, backpackMaxWeight: maxWeight, backpackItems: items)
     }
 }

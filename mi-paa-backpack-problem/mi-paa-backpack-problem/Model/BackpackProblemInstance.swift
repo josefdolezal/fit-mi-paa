@@ -25,3 +25,32 @@ extension BackpackProblemInstance: Equatable {
         return lhs.id == rhs.id && lhs.backpackMaxWeight == rhs.backpackMaxWeight && lhs.backpackItems == rhs.backpackItems
     }
 }
+
+extension BackpackProblemInstance: Readable {
+    init(plainText: String) throws {
+        let components = plainText.components(separatedBy: " ")
+        let itemStartIndex = 3
+        var items = [BackpackItem]()
+
+        guard
+            let id = components.first,
+            let maxWeight = Int(components[2])
+        else {
+            throw BackpackInstanceReaderError.invalidData(plainText)
+        }
+
+        for i in stride(from: itemStartIndex, to: components.count, by: 2) {
+            guard
+                let weight = Int(components[i]),
+                let value = Int(components[i+1])
+            else {
+                throw BackpackInstanceReaderError.invalidData(plainText)
+            }
+
+            items.append(BackpackItem(value: value, weight: weight))
+        }
+
+        self.init(id: id, backpackMaxWeight: maxWeight, backpackItems: items)
+
+    }
+}

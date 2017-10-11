@@ -24,4 +24,9 @@ class BackpackProblemInstanceTests: XCTestCase {
         XCTAssertEqual(subject, BackpackProblemInstance(id: "", backpackMaxWeight: 100, backpackItems: []))
     }
 
+    func testPlainTextParsing() {
+        let subject = try! BackpackProblemInstance(plainText: "9000 4 100 18 114")
+
+        XCTAssertEqual(subject, BackpackProblemInstance.init(id: "9000", backpackMaxWeight: 100, backpackItems: [BackpackItem(value: 114, weight: 18)]))
+    }
 }
