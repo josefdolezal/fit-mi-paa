@@ -25,6 +25,12 @@ class BackpackInstanceReaderTests: XCTestCase {
         subject = BackpackInstanceReader(fileManager: FileManagerMock())
     }
 
+    func testSingleFileIsReadProperly() {
+        let instance = try! subject.readFile(at: URL(string: "0")!, ofType: BackpackProblemInstance.self)!
+
+        XCTAssertEqual(instances[0], instance)
+    }
+
     func testAllInstancesAreReadProperly() {
         let instances = try! subject.readFiles(at: URL(string: "/")!, ofType: BackpackProblemInstance.self)
 

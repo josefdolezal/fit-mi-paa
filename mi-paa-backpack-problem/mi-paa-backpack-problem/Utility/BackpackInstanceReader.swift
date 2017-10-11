@@ -10,6 +10,7 @@ import Foundation
 
 enum BackpackInstanceReaderError: Error {
     case invalidData(String)
+    case unsupportedFile(URL)
 }
 
 protocol FileManagerType {
@@ -33,13 +34,15 @@ class BackpackInstanceReader {
         let fileManager = self.fileManager
         let files = try fileManager.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
 
-        return files.flatMap { fileURL in
-            guard let fileData = fileManager.contents(atPath: fileURL.path) else {
-                return nil
-            }
+        return try files.flatMap { try readFile(at: $0, ofType: type) }
+    }
 
-            return String(data: fileData, encoding: .utf8)
-        }.map { fileContent in
+    func readFile<LineObject: Readable>(at url: URL, ofType type: LineObject.Type) throws -> [LineObject]? {
+        guard let fileData = fileManager.contents(atPath: url.path) else {
+            throw BackpackInstanceReaderError.unsupportedFile(url)
+        }
+
+        return String(data: fileData, encoding: .utf8).flatMap { fileContent in
             let lines = fileContent.components(separatedBy: "\n")
 
             return lines
