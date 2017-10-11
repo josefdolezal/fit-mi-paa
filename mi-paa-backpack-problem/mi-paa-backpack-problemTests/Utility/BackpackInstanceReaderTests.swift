@@ -12,11 +12,11 @@ class BackpackInstanceReaderTests: XCTestCase {
 
     var subject: BackpackInstanceReader!
 
-    let instances: [[BackpackInstanceReader.BackpackProblemInstance]] = [
-        [(100, [.init(value: 114, weight: 18), .init(value: 136, weight: 42), .init(value: 192, weight: 88), .init(value: 223, weight: 3)])],
-        [(100, [.init(value: 29, weight: 55), .init(value: 64, weight: 81), .init(value: 104, weight: 14), .init(value: 222, weight: 52)])],
-        [(100, [.init(value: 196, weight: 89), .init(value: 62, weight: 18), .init(value: 34, weight: 57), .init(value: 112, weight: 69)])],
-        [(100, [.init(value: 169, weight: 34), .init(value: 152, weight: 23), .init(value: 44, weight: 62), .init(value: 224, weight: 2)])],
+    let instances: [[BackpackProblemInstance]] = [
+        [BackpackProblemInstance(id: "9000", backpackMaxWeight: 100, backpackItems: [.init(value: 114, weight: 18), .init(value: 136, weight: 42), .init(value: 192, weight: 88), .init(value: 223, weight: 3)])],
+        [BackpackProblemInstance(id: "9001", backpackMaxWeight: 100, backpackItems: [.init(value: 29, weight: 55), .init(value: 64, weight: 81), .init(value: 104, weight: 14), .init(value: 222, weight: 52)])],
+        [BackpackProblemInstance(id: "9002", backpackMaxWeight: 100, backpackItems: [.init(value: 196, weight: 89), .init(value: 62, weight: 18), .init(value: 34, weight: 57), .init(value: 112, weight: 69)])],
+        [BackpackProblemInstance(id: "9003", backpackMaxWeight: 100, backpackItems: [.init(value: 169, weight: 34), .init(value: 152, weight: 23), .init(value: 44, weight: 62), .init(value: 224, weight: 2)])],
     ]
 
     override func setUp() {
@@ -36,8 +36,7 @@ class BackpackInstanceReaderTests: XCTestCase {
                 let reference = self.instances[iterator][index]
                 let instance = instances[iterator][index]
 
-                XCTAssertEqual(reference.maxWeight, instance.maxWeight)
-                XCTAssertEqual(reference.items, instance.items)
+                XCTAssertEqual(reference, instance)
             }
         }
     }

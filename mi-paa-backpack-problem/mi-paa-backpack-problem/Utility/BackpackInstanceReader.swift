@@ -18,7 +18,6 @@ protocol FileManagerType {
 }
 
 class BackpackInstanceReader {
-    typealias BackpackProblemInstance = (maxWeight: Int, items: [BackpackItem])
 
     private let fileManager: FileManagerType
 
@@ -49,6 +48,7 @@ class BackpackInstanceReader {
         var items = [BackpackItem]()
 
         guard
+            let id = components.first,
             let maxWeight = Int(components[2])
         else {
             throw BackpackInstanceReaderError.invalidData(input)
@@ -65,6 +65,6 @@ class BackpackInstanceReader {
             items.append(BackpackItem(value: value, weight: weight))
         }
 
-        return (maxWeight, items)
+        return BackpackProblemInstance(id: id, backpackMaxWeight: maxWeight, backpackItems: items)
     }
 }
