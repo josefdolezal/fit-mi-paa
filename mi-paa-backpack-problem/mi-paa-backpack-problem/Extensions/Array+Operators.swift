@@ -24,3 +24,11 @@ extension Array {
         }
     }
 }
+
+extension Array where Element: FloatingPoint {
+    func average() -> Element? {
+        guard count > 0 else { return nil }
+
+        return reduce(0, +) / Element(count)
+    }
+}
