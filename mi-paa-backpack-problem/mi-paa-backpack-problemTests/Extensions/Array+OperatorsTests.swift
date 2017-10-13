@@ -22,4 +22,17 @@ class Array_OperatorsTests: XCTestCase {
 
         XCTAssertEqual(5, subject.reduce(0, while: { partial, _ in partial < 5 }, { partial, _ in partial + 1 }))
     }
+
+    func testAverageOperator() {
+        let subject = [Double](arrayLiteral: 1, 2, 3).average()
+
+        XCTAssertNotNil(subject)
+        XCTAssertEqual(subject, 2.0)
+    }
+
+    func testAverageReturnsNilOnEmptyArray() {
+        let subject = [Double]().average()
+
+        XCTAssertNil(subject)
+    }
 }
