@@ -3,7 +3,7 @@
 # Repozitář k předmětu MI-PAA 2017/18
 
 ## Řešené úlohy
-* [Problém batohu](mi-paa-backpack-problem)
+* [Problém batohu](backpack-problem)
 
 ## Kompilace a testování
 Zdrojové kódy jsou psané v jazyce Swift 4, ke kompilaci je nutné využít Xcode 9.
