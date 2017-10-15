@@ -17,7 +17,7 @@ clean:
 
 project:
 	swift package --package-path $(PACKAGE) generate-xcodeproj
-	marathon run build-phase-injector.swift "$(DIR)/$(PACKAGE)/BackpackProblem.xcodeproj" BackpackBenchmark
+	marathon run build-phase-injector.swift "$(DIR)/$(PACKAGE)/BackpackProblem.xcodeproj" BackpackBenchmark --verbose
 
 code: project
 	open $(PACKAGE)/*.xcodeproj
