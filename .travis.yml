@@ -1,4 +1,6 @@
 language: objective-c
 osx_image: xcode9
 
+install:
+  - brew install marathon-swift
 script: make test

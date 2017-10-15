@@ -2,6 +2,7 @@ BENCHMARK_BIN = BackpackBenchmark
 PACKAGE = backpack-problem
 BIN_PATH = $(shell swift build --package-path $(PACKAGE) --show-bin-path)
 EXAMPLES = $(PACKAGE)/Sources/BackpackBenchmark/Sample/*
+DIR = $(shell pwd)
 
 build:
 	swift build --package-path $(PACKAGE)
@@ -16,6 +17,7 @@ clean:
 
 project:
 	swift package --package-path $(PACKAGE) generate-xcodeproj
+	marathon run build-phase-injector.swift "$(DIR)/$(PACKAGE)/BackpackProblem.xcodeproj" BackpackBenchmark
 
 code: project
 	open $(PACKAGE)/*.xcodeproj
