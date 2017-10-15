@@ -10,7 +10,10 @@ let package = Package(
             targets: ["BackpackBenchmark"]),
         .library(
             name: "BackpackSolver",
-            targets: ["BackpackSolver"])
+            targets: ["BackpackSolver"]),
+        .library(
+            name: "Measurement",
+            targets: ["Measurement"])
     ],
     targets: [
         .target(
@@ -18,7 +21,10 @@ let package = Package(
             dependencies: []),
         .target(
             name: "BackpackBenchmark",
-            dependencies: ["BackpackSolver"]),
+            dependencies: ["BackpackSolver", "Measurement"]),
+        .target(
+            name: "Measurement",
+        dependencies: []),
         .testTarget(
             name: "BackpackSolverTests",
             dependencies: ["BackpackSolver"]),
