@@ -24,7 +24,10 @@ let package = Package(
             dependencies: ["BackpackSolver", "Measurement"]),
         .target(
             name: "Measurement",
-        dependencies: []),
+            dependencies: []),
+        .target(
+            name: "DataFormatter",
+            dependencies: []),
         .testTarget(
             name: "BackpackSolverTests",
             dependencies: ["BackpackSolver"]),
