@@ -30,6 +30,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "BackpackSolverTests",
-            dependencies: ["BackpackSolver"]),
+            dependencies: ["BackpackSolver", "DataFormatter", "BackpackBenchmark"]),
     ]
 )
