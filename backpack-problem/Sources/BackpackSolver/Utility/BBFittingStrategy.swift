@@ -34,17 +34,52 @@ public class BBFittingStrategy: BackpackFittingStrategyType {
         var itemAvailable: Bool { return itemIndex < items.value.count }
     }
 
-    static func fit(items: [BackpackItem], maxWeight: Int) -> BackpackFittingResult? {
-        return nil
+    public static func fit(items: [BackpackItem], maxWeight: Int) -> BackpackFittingResult? {
+        let sortedItems = items
+            .map { ($0, Double($0.value) / Double($0.weight)) }
+            .sorted { $0.1 <= $1.1 }
+            .map { $0.0 }
+        let itemsReference = Reference(initial: sortedItems)
+        let maximumValue = items.reduce(0) { $0 + $1.value }
+        let branchNode = BranchNode(maximumValue: maximumValue, capacityLeft: maxWeight, value: 0, itemIndex: 0, items: itemsReference)
+        let actualMaximum = Reference(initial: 0)
+
+        // Find solution
+        let bestNode = evaluateBranch(from: branchNode, actualMaximum: actualMaximum)
+
+        // No solution found
+        guard actualMaximum.value > 0 else { return nil }
+
+        return BackpackFittingResult(weight: bestNode.items.value.reduce(0) { $0 + $1.weight },
+                                     value: actualMaximum.value)
     }
 
-    private static func branch(from node: BranchNode) -> (left: BranchNode, right: BranchNode) {
-        guard let nodeItem = node.items.first else {
-            fatalError("The node item must be presented.")
+    private static func evaluateBranch(from node: BranchNode, actualMaximum: Reference<Int>) -> BranchNode {
+        guard
+            node.itemAvailable,
+            node.potentialValue > actualMaximum.value
+        else { return node }
+
+        // Branch
+        let (leftBranch, rightBranch) = branch(from: node)
+
+        let leftTree = evaluateBranch(from: leftBranch, actualMaximum: actualMaximum)
+        let rightTree = evaluateBranch(from: rightBranch, actualMaximum: actualMaximum)
+
+        // Check for best branch
+        let bestSubtree = leftTree.value > rightTree.value ? leftTree : rightTree
+
+        // If best branch is better than current maximum, update the current maximum
+        if bestSubtree.value > actualMaximum.value {
+            actualMaximum.value = bestSubtree.value
+
+            return bestSubtree
         }
 
-        var branchedItems = node.items
-        branchedItems.removeFirst()
+        // Fallback, the current node is the best
+        return node
+    }
+
     private static func branch(from node: BranchNode) -> (left: BranchNode, right: BranchNode) {
         let nodeItem = node.items.value[node.itemIndex]
         let newItemIndex = node.itemIndex + 1
