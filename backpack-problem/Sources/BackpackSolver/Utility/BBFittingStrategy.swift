@@ -7,16 +7,6 @@
 
 import Foundation
 
-// Reference semantic for value types
-// Allows value types to be passed as reference instead of shallow copy
-class Reference<T> {
-    var value: T
-
-    init(initial value: T) {
-        self.value = value
-    }
-}
-
 public class BBFittingStrategy: BackpackFittingStrategyType {
     private struct BranchNode {
         // Top bound
