@@ -1,0 +1,39 @@
+\documentclass[czech]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{a4wide}
+\usepackage[czech]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amstext}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\title{BI-PAA - Problémy a algoritmy 2017/18}
+\author{Josef Dolezal}
+
+\newcommand{\lecture}[1]{
+    \newpage
+    \input{#1}
+}
+
+% Illustration
+\newcommand{\image}[4][\textwidth]{
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=#1]{notes/assets/#4}
+        \caption{#3}
+        \label{fig:#2}
+    \end{figure}
+}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\end{document}
