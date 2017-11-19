@@ -1,0 +1,118 @@
+\section{Přednáška 1 -- Kombinatorické problémy a algoritmy}
+
+\subsection{Kombinatorická matematika, problémy}
+
+\begin{itemize}
+    \item Konečné a diskrétní problémy -> konečný počet proměnných s konečným počtem hodnot pro každou z nich
+    \item Hledá řešení pomocí zkoušení všech možných hodnot
+    \item Poskytuje výsledek v konečném, ale vysokém čase
+\end{itemize}
+
+\subsubsection{Názvosloví}
+
+\begin{description}
+    \item[Vstupní proměnné] Proměnné charakterizující problém (počet prvků v batohu, nosnost, ohodnocení a hmotnost prvků)
+    \item[Výstupní proměnné] Proměnné očekávané v rámci řešení problému (seznam věcí v batohu $x_i \in {0,1}$)
+    \item[Instance problému] Ohodnocení vstupních proměnných
+    \item[Konfigurační proměnné] Proměnné nastavované při hledání řešení, zkoumá se zda splňují omezení (seznam věcí v batohu $x_i \in {0,1}$)
+    \item[Konfigurace] Ohodnocení konfiguračních proměnných ($x_1 := 1, x_2:= 0, \ldots, x_n = 0$)
+    \item[Omezení] Podmínky, které musí konfigurace splňovat aby byla řešením (součet vah věcí v batohu nesmí překročit nosnost)
+    \item[Optimalizační kritérium] Podmínky kladené na optimální řešení - určuje kdy je řešení optimální (cena věcí musí být v součtu maximální)
+    \item[Řešení, suboptimální řešení, optimální řešení] Instance která splňuje omezení, instance která splňuje omezení a má vyhovující hodnotu optimalizačního kritéria, konfigurace splňující omezení mající nejlepší hodnotu optimalizačního kritéria
+\end{description}
+
+\subsubsection{Verze kombinatorických problémů}
+
+Mějme instanci $I$, konfiguraci $Y$ a omezení $R(I, Y)$ řikající, zda $Y$ je řešením.
+
+\begin{description}
+    \item[Rozhodovací problém] \
+    \begin{itemize}
+        \item Existuje $Y$ takové, že $R(I, Y)$ je řešením?
+        \item Platí pro všechna $Y$, že $R(I, Y)$ je řešením?
+    \end{itemize}
+
+    \item[Konstruktivní problém] \
+    \begin{itemize}
+        \item Sestrojit $Y$, pro které $R(I, Y)$
+    \end{itemize}
+
+    \item[Enumerační problém] \
+    \begin{itemize}
+        \item Najít všechna $Y$, že $R(I, Y)$
+    \end{itemize}
+\end{description}
+
+Tyto verze mají stejné vstupní a konfigurační proměnné a omezení $R$.
+Liší se pouze výstupními proměnnými.
+Díky tomu je lze převádět a rozpoznat.
+
+\subsection{Optimalizační problémy}
+
+Mějme instanci $I$, konfiguraci $Y$ a omezení $R(I, Y)$ řikající, zda $Y$ je řešením, $C(Y)$ je cenová funkce.
+
+\begin{description}
+    \item[Optimalizační rozhodovací problém] \
+    \begin{itemize}
+        \item Existuje $Y$ takové, že $R(I, Y)$ a $C(y)$ je alespoň tak dobré jako konstanta $Q$?
+    \end{itemize}
+
+    \item[Optimalizační konstruktivní problém] \
+    \begin{itemize}
+        \item Sestrojit $Y$, pro které $R(I, Y)$ a $C(Y)$ je nejlepší možné.
+    \end{itemize}
+
+    \item[Optimalizační enumerační problém] \
+    \begin{itemize}
+        \item Najít všechna $Y$, že $R(I, Y)$ a $C(Y)$ je nejlepší možné.
+    \end{itemize}
+
+    \item[Optimalizační evaluační problém] \
+    \begin{itemize}
+        \item Najít nejlepší možné $C(Y)$ takové, že $R(I, Y)$.
+    \end{itemize}
+\end{description}
+
+\subsection{Problém splnitelnosti booleovské formule - SAT}
+
+Pro $n$ proměnných booleovské formule v konjuktivní normální formě (součin součtů) určit, zda je splnitelná.
+
+\subsubsection{Verze SAT problému}
+
+\begin{description}
+    \item[Rozhodovací problém] \
+    \begin{itemize}
+        \item Existuje ohodnocení takové, že je formule splnitelná?
+    \end{itemize}
+
+    \item[Konstruktivní problém] \
+    \begin{itemize}
+        \item Sestrojit ohodnocení takové, že je formule splnitelná.
+    \end{itemize}
+
+    \item[Optimalizační Enumerační problém] \
+    \begin{itemize}
+        \item Sestrojit všechna ohodnocení taková, že je formule splnitelná.
+    \end{itemize}
+\end{description}
+
+Pro optimalizační verze se následně určuje, zda existuje ohodnocení, mající nejvýše $Q$ jedniček resp. co nejméně jedniček.
+
+\subsection{Složitost problému}
+
+\begin{itemize}
+    \item Asymptotická horní mez
+    \begin{itemize}
+        \item $f(n) = O(g(n)) \Leftrightarrow \exists c > 0, n_0 \in N: \forall n > n_0: f(n) \leq c \cdot g(n)$
+    \end{itemize}
+
+    \item Asymptotická horní mez
+    \begin{itemize}
+        \item $f(n) = \Omega(g(n)) \Leftrightarrow \exists c > 0, n_0 \in N: \forall n > n_0: f(n) \geq c \cdot g(n)$
+    \end{itemize}
+
+    \item Asymptotický odhad
+    \begin{itemize}
+        \item $f(n) = \Theta(g(n)) \Leftrightarrow f(n) = O(g(n)) \land f(n) = \Omega(g(n))$
+    \end{itemize}
+\end{itemize}
