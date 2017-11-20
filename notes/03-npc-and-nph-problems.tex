@@ -1,0 +1,72 @@
+\section{NP-úplné a NP-těžké problémy}
+
+\begin{description}
+    \item[X-těžký problém] Jestliže řešení \textbf{všech} problémů z X dá v polynomiálním čase převést na řešení tohoto problému (alespoň tak těžký jako všechny problémy z X).
+    \item[X-úplný problém] Jestliže je X-těžký a zároveň sám patří do X.
+\end{description}
+
+\subsection{Karpova redukce}
+
+Rozhodovací problém $\Pi_1$ je Karp-redukovatelný na $\Pi_2$, jestliže existuje polynomiální program pro DST, který převede každou instanci $I \in \Pi_1$ 
+Karpova redukce je tranzitivní.
+
+\subsection{Třída NP-úplný, NPC}
+
+Problém je NPC, pokud
+
+\begin{itemize}
+    \item $\Pi \in$ NP
+    \item pro všechny problémy $\Pi' \in NP$ platí, že jsou polynomiálně redukovatelné na $\Pi$
+\end{itemize}
+
+Z tohoto tvrzení vyplívá, že pokud $\Pi \in$ NP, $\exists \Pi' \in$ NPC a zároveň $\Pi' \textrm{redukovatelný na} \Pi$ pak $\Pi \in NPC$.
+Neboli pokud mám NPC problém a mohu ho zredokuvat na jiný NP problém, pak tento je také NPC.
+
+\subsection{Cookova věta}
+
+Cookova věta říká, že \textbf{SAT je NP-úplný}.
+Z toho plyne, že NPC třída není prázdná.
+
+Existuje tisíce NPC problémů, pokud by existoval polynomiální program na jeden z nich, existoval by (díky polynomiální redukci) na všechno.
+Je tedy spíše nepravděpodobné, že by P = NP.
+
+Mezi další NPC problémy patří 3 SAT, uzlové pokrytí, Hamiltonova kružnice, TSP, Knapsack problem\dots
+
+\subsection{Třída NPO a PO}
+
+Optimalizační roblém patří do NOP, pokud:
+
+\begin{itemize}
+    \item lze výstup zapsat v polynomiálním čase,
+    \item omezující podmínky lze vyřešit v polynomiálním čase,
+    \item optimalizační kritérium lze vyhodnotit v polynomiálním čase.
+\end{itemize}
+
+\subsubsection{Třída PO}
+
+Optimalizační problém patří do PO, pokud:
+
+\begin{itemize}
+    \item patří do NPO,
+    \item existuje program pro DTS, řešící každou instanc v polynomiálním čase
+\end{itemize}
+
+Do PO patří např. hledání nejkratší cesty pomocí Dijkstrova algoritmu.
+
+\begin{description}
+    \item[Optimalizační problém v čase $t$] \
+    \begin{itemize}
+        \item Program pro DTS řeší optimalizační problém v $t$, jestliže se pro každou instanci zastaví po $t$ krocích a nalezne řešení.
+        \item Program pro DTS počítá optimalizační kritérium v $t$, jestli že pro každé řešení instance zastaví po $t$ krocích a vrátí výsledek optimalizačního kritéria.
+    \end{itemize} 
+\end{description}
+
+\subsection{Turingova redukce}
+
+Rozhodovací problém $\Pi_1$ je Turing-redukovatelný na $\Pi_2$, pokud existuje program pro DTS, který řeší každou instanci $I \in \Pi_1$ tak, že používá program $M_2$ pro problém $\Pi_2$ jako podprogram (tvrvání $M_2$ se považuje jako krok).
+Karpova redukce je speciálním případem Turingovy redukce, kde se podprogram zavolá pouze jednou a využije se přímo výsledek.
+
+\subsubsection{Třída problémů NPI}
+
+Problémy, které nemohou mít polynomiální algoritmus ani na ně není převeditelný SAT (pokud N $\neq$ NP).
+Zástupcem může být např. izomorfismus grafů.
