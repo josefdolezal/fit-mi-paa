@@ -1,0 +1,94 @@
+\section{Přednáška 2 -- Třídy P a NP}
+
+\begin{description}
+    \item[P problémy] Únosné problémy, řešitelné v polynomiálním čase na \textbf{deterministickém} Turingově stroji
+    \item[NP problémy] Únosně velký prostor konfigurací, řešitelné v polynomiálním čase na \textbf{nedeterministickém} Turingově stroji, zkratka pro \texttt{Non-Deterministic Polynomial}
+\end{description}
+
+\subsection{Třída problémů P}
+
+\begin{itemize}
+    \item Program řeší na deterministickém Turingově stroji rozhodovací problém, pokud se jestli že se výpočet zastaví po konečném počtu kroků pro každou instanci tohoto problému.
+    \item Program řeší na DTS rozhodovací problém v čase $t$, pokud se pro každou instanci zastaví po $t$ krocích.
+    \item Program řeší na DTS rozhodovací problém s pamětí $m$, jestliže pro každou instanci využije nejvíce $m$ políček pásky.
+\end{itemize}
+
+\subsubsection*{PSPACE}
+Problém lze vyřešit v paměti $O(n^k)$, kde $n$ je velikost instance a $k$ konečné číslo.
+Označuje třídu problémů řešitelných v polynomiální paměťové složitosti.
+
+\subsubsection*{EXTIME}
+Problém lze vyřešit v čase $O(2^{P(n)})$, kde $P(n)$ je polynom ve velikosti instance $n$.
+Označuje třídu problémů řešitelných v exponenciální časové složitosti.
+
+\subsection{Třída problémů NP}
+
+
+Rozhodovací problém spadá do třídy NP:
+\begin{itemize}
+    \item jestliže pro něj ezistuje NTS, který pro každou instanci mající výstup \textit{ano} řeší v čase $O(n^k)$,
+    \item jestliže pro každou instanci $I \in \Pi_{ano}$ existuje konfigurace $Y$ taková, že kontrola zda $Y$ je řešením patří do P
+\end{itemize}
+
+\begin{description}
+    \item[Cetifikát] Konfigurace NTS, jejíž ověření že je výsledkem patří do P.
+    Tato konfigurace musí existovat pro \textbf{každou} instanci $I \in \Pi_{ano}$.
+\end{description}
+
+\subsubsection*{Nedeterministický Turingův stroj}
+
+Lze si představit jako klasický Turingův stroj, který v momentě kdy se má rozhodnou se naklonuje a každý z klonů se vydá jednou cestou.
+Jedna z kopií najde únosně dlouhou cestu prostorem konfigurací -- tj. najde řešení.
+
+Jiná verianta je, že tento Turingův stroj v momentě kdy se musí rozhodnout vždy vybere náhodně správnou možnost.
+
+\begin{itemize}
+    \item Problém je řešitelný NTS v čase $t$, jestliže se výpočet zastaví po $t$ krocích pro každou instaci $I$, mající výstup ano.
+\end{itemize}
+
+Jestliže je problém řešitelný na NTS v čase $T(n)$, pak na $DTS$ je řešitelný v $2^{O(T(n))}$.
+
+\subsubsection*{Hamiltonovská kružnice}
+
+Hledání Hamiltonovské kružnice je problém nalezení kružnice v grafu, která prochází všemi vrcholy právě jednou.
+
+\begin{itemize}
+    \item Konfigurace - Podgraf $G = (V', E')$ původního grafu
+    \item Krok algoritmu - V každém kroku se přidá:
+    
+    \begin{enumerate}
+        \item hrana $e = (u, v)$ taková, že nenáleží $E'$ a zároveň $u \ V', v \notin V', \textrm{deg}(v) = 1$
+        \item uzel $v$,
+        \item pokud to není možné, \uv{kopie} NTS končí,
+        \item pokud přidaná hrana vytvoří v $G'$ kružnici kratší než $|V|$, \uv{kopie} končí,
+        \item pokud přidaná hrana vytvoří v $G'$ kružnici délky $|V|$, algoritmus vydá výstup \uv{ano}
+    \end{enumerate}
+\end{itemize}
+
+Pro nedeterministický algoritmus platí HC platí, že pokud graf obsahuje kružnici pak je nalezena po $|V|$ krocích.
+Navíc také platí, že pokud nalezena není, pak neexistuje (neplatí u algoritmů obecně).
+
+Certifikát HC lze ověřit v polynomiálním čase: $G'$ obsahuje $|V|$ uzlů, $E' \subset E$ a žádný uzel se ve $V'$ nevyskytuje dvakrát.
+
+\subsection{Třída problémů co-NP}
+
+Jedná se o množinu problémů komplementárních (opačných) k problémům NP.
+Pokud se u NP problémů ptáme na odpověď ano, u co-NP se ptáme na odpověď \uv{ne} (HC: je graf \textit{prost} Hamiltonovských kružnic, SAT: je formule \textit{nesplnitelná}).
+Doplňky omezujících pravidel se vytváří Demorganovým pravidlem.
+
+\begin{itemize}
+    \item NP: $\exists Y, R(I, Y)$
+        \begin{itemize}
+            \item \textbf{Existuje} Hamiltonovská kružnice?
+            \item \textbf{Existuje} ohodnocení, pro které je formule splnitelná?
+        \end{itemize}
+
+    \item co-NP: $\forall Y, R'(I, Y$
+    \begin{itemize}
+        \item Prochází \textbf{všechny} kružnice méně než $|V|$ uzly?
+        \item Platí pro \textbf{každé} ohodnocení $F(X) = 0$?
+    \end{itemize}
+\end{itemize}
+
+Existují problémy, které jsou ve skupinách NP i co-NP.
+Tím je například faktorizace čísla (dáno $N$, existuje prvočinitel jehož poslední číslo je 7? ANO: rozklad na prvočinitele, NE: rozklad na prvočinitele).
