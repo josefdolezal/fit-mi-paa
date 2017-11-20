@@ -1,0 +1,51 @@
+\section{Přednáška 4 -- Optimalizační problémy}
+
+Optimalizační problém patří do NPO, pokud:
+
+\begin{itemize}
+    \item výstup lze zapsat,
+    \item omezující podmínky lze vyhodnotit v polynomiálním čase,
+    \item optimalizační kritérium lze vyhodnotit v polynomiálním čase.
+\end{itemize}
+
+\subsubsection*{Třída PO}
+
+Optimalizační problém patří do PO, jestliže patří do NPO a zároveň existuje Turingův stroj řešící každou instanci v polynomiálním čase.
+Příkladem může být problém nejkratší cesty v grafu.
+
+\subsubsection*{Pseudopolynomiální algoritmy}
+
+Jedná se o algoritmus, jehož počet kroků závisí polynomiálně na velikosti instance, ale závisí také na parametru, který s velikostí instance nesouvisí.
+
+\subsubsection*{Aproximativní algoritmus, třída APX}
+
+Aproximativní algoritmus pro problém $\Pi$ je $\epsilon$-aproximativní, jestliže každou instanci vyřeší v polynomiálním čase s relativní chybou $\epsilon$.
+Číslo $\epsilon$ se nazývá aproximační práh.
+
+Optimalizační problém patří do třídy APX, jestliže je $R$-aproximativní pro konečné $R$.
+
+Platí, že $\epsilon = 1 - \frac{1}{R}$.
+
+\subsubsection{PTAS -- Polynomial Time Approximation Scheme}
+
+Algoritmus APR který, pro každé $1 > \epsilon > 0$ vyřeší každou instanci problému s relativní chybou nejvýše $\epsilon$ v polynomiálním čase nazýváme polynomiální aproximační schéma.
+
+\subsubsection{FPTAS -- Fully Polynomial Time Approximation Scheme}
+
+Polynomiální aproximační schéma APR, jehož čas výpočtu závisí polynomiálně na $1/\epsilon$ se nazývá plně polynomiální aproximační schéma.
+
+\subsubsection{Randomizované algoritmy}
+
+Založeny na náhodné volbě, jejich výsledek je vyjádřen statisticky:
+
+\begin{itemize}
+    \item dosažený výsledek je náhodná proměnná, čas běhu je pevný pro dannou instanci,
+    \item čas běhu je náhodná proměnná, výsledek vždy správný.
+\end{itemize}
+
+Výhody randomizovaných algoritmů:
+
+\begin{itemize}
+    \item očekávaná kvalita výsledku může být lepší než zaručená kvalita aproximativních algoritmů,
+    \item nezávislým opakováním se dá kvalita výsledku zlepšovat.
+\end{itemize}
