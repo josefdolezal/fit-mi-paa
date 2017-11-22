@@ -21,7 +21,7 @@ let package = Package(
             dependencies: []),
         .target(
             name: "BackpackBenchmark",
-            dependencies: ["BackpackSolver", "Measurement"]),
+            dependencies: ["BackpackSolver", "Measurement", "DataFormatter"]),
         .target(
             name: "Measurement",
             dependencies: []),
