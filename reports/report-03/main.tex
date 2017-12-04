@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{MI-PAA: Problém batohu, úloha 3}
+\author{Josef Doležal}
+
+\usepackage{natbib}
+\usepackage[czech]{babel}
+\usepackage{a4wide}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Úvod}
+Problémem batohu se nazývá úloha, ve které je za úkol pro množinu $n$ předmětů a batoh o maximální nosnosti $m$ určit, jak předměty do batohu vložit tak, aby v součtu měly co největší hodnotu a zároveň nebyla překročena maximální nosnost batohu.
+
+Vstupem je tedy seznam $n$ předmětů (dvojic váha-cena) a maximální nosnost batohu $m$.
+Výstupem je v součtu nejvyšší možná cena předmětů, jejichž váha dohromady nepřekročí nosnost.
+
+\section{Zadání úlohy}
+
+\begin{itemize}
+    \item Prozkoumejte citlivost metod řešení problému batohu na parametry instancí generovaných generátorem náhodných instancí. Máte-li podezření na další závislosti, modifikujte zdrojový tvar generátoru.
+    \item Na základě zjištění navrhněte a proveďte experimentální vyhodnocení kvality řešení a výpočetní náročnosti.
+    \item Zkoumejte zejména následující metody: hrubá síla, metoda větví a hranic, dynamické programování a heuristika (poměr cena/váha).
+    Pozorujte zejména závislosti výpočetního času (případně počtu testovaných stavů) a rel. chyby (v případě heuristiky) na: maximální váze věcí, maximální ceně věcí, poměru kapacity batohu k sumární váze a granularitě.
+\end{itemize}
+
+\section{Rámcový popis řešení}
+
+Pro určení citlivosti jednotlivých řešení problému je využito generování náhodných vstupů.
+U jednotlivých vstupů jsou jsou záměrně měněny parametry generování (např. granularita, počet věcí, maximální cena, \ldots).
+
+Pro jednotlivá řešení jsem vybral parametry takové, u kterých je vysoká pravděpodobnost, že jejich změna bude mít znatelný dopad na celkovou dobu výpočtu (exaktní metody) nebo relativní chybu (heuristika).
+Zvolené parametry jsou pro jednotlivé metody následující:
+
+\begin{itemize}
+    \item Dynamické programování -- maximální cena,
+    \item Metoda větví a hranic:
+    \begin{itemize}
+        \item maximální váha,
+        \item poměr kapacity k maximální váze,
+    \end{itemize}
+
+    \item Heuristika:
+    \begin{itemize}
+        \item maximální cena,
+        \item granularita.
+    \end{itemize}
+\end{itemize}
+
+\section{Popis algoritmu}
+
+\section{Závěr}
+
+\end{document}
