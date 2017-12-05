@@ -22,6 +22,16 @@ public protocol Readable {
     init(plainText: String) throws
 }
 
+public class FileContent<Content> {
+    public let fileName: String
+    public let content: Content
+
+    init(fileName: String, content: Content) {
+        self.fileName = fileName
+        self.content = content
+    }
+}
+
 public class BackpackInstanceReader {
 
     private let fileManager: FileManagerType
@@ -30,24 +40,28 @@ public class BackpackInstanceReader {
         self.fileManager = fileManager
     }
 
-    public func readFiles<LineObject: Readable>(at folder: URL, ofType type: LineObject.Type) throws -> [[LineObject]] {
+    public func readFiles<LineObject: Readable>(at folder: URL, ofType type: LineObject.Type, predicate: (URL) -> Bool = { _ in true }) throws -> [FileContent<[LineObject]>] {
         let fileManager = self.fileManager
         let files = try fileManager.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
 
-        return try files.flatMap { try readFile(at: $0, ofType: type) }
+        return try files.filter(predicate).flatMap { try readFile(at: $0, ofType: type) }
     }
 
-    public func readFile<LineObject: Readable>(at url: URL, ofType type: LineObject.Type) throws -> [LineObject]? {
+    public func readFile<LineObject: Readable>(at url: URL, ofType type: LineObject.Type) throws -> FileContent<[LineObject]>? {
         guard let fileData = fileManager.contents(atPath: url.path) else {
             throw BackpackInstanceReaderError.unsupportedFile(url)
         }
 
-        return String(data: fileData, encoding: .utf8).flatMap { fileContent in
+        let content = String(data: fileData, encoding: .utf8).flatMap { fileContent -> [LineObject]? in
             let lines = fileContent.components(separatedBy: "\n")
 
             return lines
-                .filter { $0.characters.count > 0 }
+                .filter { $0.count > 0 }
                 .flatMap { try? type.init(plainText: $0) }
         }
+
+        guard let fileContent = content else { return nil }
+
+        return FileContent(fileName: url.lastPathComponent, content: fileContent)
     }
 }
