@@ -7,6 +7,9 @@ DIR = $(shell pwd)
 build:
 	swift build --package-path $(PACKAGE)
 
+release:
+	swift build --configuration release --package-path $(PACKAGE)
+
 test:
 	swift test --package-path $(PACKAGE)
 
