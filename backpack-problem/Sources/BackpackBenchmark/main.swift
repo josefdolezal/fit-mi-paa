@@ -11,40 +11,58 @@ import BackpackSolver
 import Measurement
 import DataFormatter
 
-func test(instance: BackpackProblemInstance, against solution: BackpackProblemSolution) -> (Double, Double) {
-    let bbBenchmark = FittingStrategyBenchmark.duration(strategy: FPTASFittingStrategy.self, on: instance)
-    let approximation = Double(solution.backpackValue - bbBenchmark.result.value) / Double(solution.backpackValue)
+enum StrategyType: String {
+    case dynamic = "0"
+    case heuristic = "1"
+    case bb = "2"
 
-    if bbBenchmark.result.value == solution.backpackValue {
-        print("✅ Test \(instance.id) passed in \(bbBenchmark.duration)")
-    } else {
-        print("💥 Test \(instance.id) failed. (Expected: \(solution.backpackValue), Actual: \(bbBenchmark.result.value)), in \(bbBenchmark.duration)")
+    var strategy: BackpackFittingStrategyType.Type {
+        switch self {
+        case .dynamic: return DynamicFittingStrategy.self
+        case .heuristic: return BestRatioBackpackFittingStrategy.self
+        case .bb: return BBFittingStrategy.self
+        }
     }
+}
 
-    return (bbBenchmark.duration, approximation)
+guard CommandLine.arguments.count == 3 else {
+    print("No inputs folder specified")
+    exit(1)
+}
+
+let directory = CommandLine.arguments[1]
+
+guard let strategy = StrategyType(rawValue: CommandLine.arguments[2]) else {
+    print("Ukniwn strategy")
+    exit(1)
+}
+
+func test(instance: BackpackProblemInstance, strategy: BackpackFittingStrategyType.Type) -> (Double) {
+    let accb = FittingStrategyBenchmark.duration(strategy: BBFittingStrategy.self, on: instance)
+    let solution = BackpackProblemSolution(id: "", backpackValue: accb.result.value)
+    let benchmark = FittingStrategyBenchmark.duration(strategy: strategy, on: instance)
+
+    print("benchmark done: \(benchmark.duration)")
+
+    print(solution.backpackValue)
+    print(benchmark.result.value)
+
+    return FittingStrategyBenchmark.accuracy(of: benchmark.result, against: solution)
 }
 
 let filesReader = BackpackInstanceReader(fileManager: FileManager.default)
 
-let instanceGroups = try! filesReader.readFiles(at: URL(string: "./Input")!, ofType: BackpackProblemInstance.self)
-let solutionGroups = try! filesReader.readFiles(at: URL(string: "./Output")!, ofType: BackpackProblemSolution.self)
+let fileContents = try! filesReader.readFiles(at: URL(fileURLWithPath: directory), ofType: BackpackProblemInstance.self) {
+    return $0.lastPathComponent.split(separator: ".").last != "sh"
+}
 
-let times = zip(instanceGroups, solutionGroups).prefix(7).map { arg -> (Int, Double) in
-    let (instances, solutions) = arg
-    let instancesBenchmark = zip(instances, solutions).map {
-        return test(instance: $0, against: $1)
-    }
-
-    let averageTime = instancesBenchmark.map{ $0.0 }.average()!
-    let averageError = instancesBenchmark.map { $0.1 }.average()!
-    let maxError = instancesBenchmark.map { $0.1 }.max()!
-
-    let instanceSize = instances.first!.backpackItems.count
+let times = fileContents.map { file -> (Double, Double) in
+    let times = file.content.map { test(instance: $0, strategy: strategy.strategy) }
+    let averageTime = times.average()!
+    let instanceSize = Double(file.fileName.split(separator: "-").last!)!
 
     print("⚠️ [\(instanceSize) instances] Test case complete")
     print("\t⌙ ℹ️ Average time (All cases): \(averageTime)")
-    print("\t⌙ ℹ️ Average error (All cases): \(String(format: "%.2f", averageError * 100))")
-    print("\t⌙ ℹ️ Max error (All cases): \(String(format: "%.2f", maxError * 100))")
 
     return (instanceSize, averageTime)
 }

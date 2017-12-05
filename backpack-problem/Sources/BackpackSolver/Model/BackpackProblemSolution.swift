@@ -11,6 +11,11 @@ import Foundation
 public struct BackpackProblemSolution {
     public let id: String
     public let backpackValue: Int
+
+    public init(id: String, backpackValue: Int) {
+        self.id = id
+        self.backpackValue = backpackValue
+    }
 }
 
 extension BackpackProblemSolution: Readable {
