@@ -8,6 +8,7 @@
 \usepackage[czech]{babel}
 \usepackage{a4wide}
 \usepackage{graphicx}
+\usepackage{float}
 
 \begin{document}
 
@@ -51,7 +52,175 @@ Zvolené parametry jsou pro jednotlivé metody následující:
     \end{itemize}
 \end{itemize}
 
-\section{Popis algoritmu}
+Pro jednotlivé metody řešení jsem si určil jeden proměnlivý parametr.
+Na zakládě tohoto parametru jsem pro každou metodu zkoumal rozsah, pro který danná metoda vypočte řešení v přijatelném čase.
+
+Vstupy jsou generované pomocí skriptů pro příkazovou řádku.
+Pro každou dvojici metoda-parametr jsem vytvořil adresářovou strukturu se vstupy.
+Zkompilovaný program bylo následně možné konfigurovat cestou ke složce se vstupy a metodou řešení.
+
+\section{Výsledky měření}
+
+Pro zkoumání vlastností jsme vybral dvě exaktní metody (metoda větví a hranic, dynamické programování) a heuristiku (poměr cena / váha).
+Měněný parametr jsem volil tak, aby reflektoval vlastnosti jednotlivých algoritmů.
+
+
+Měření bylo pro zajištění přesnosti prováděno vícekrát.
+
+\subsection{Metoda větví a hranic - měněný parametr váha}
+
+\subsubsection*{Konfigurace generátoru}
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{ |l|l| } 
+        \hline
+        Parametr & Hodnota \\
+        \hline
+        \hline
+        Počet věcí & $23$ \\
+        Počet instancí & $15$ \\
+        Poměr kapacity batohu k sumární váze & 0.2 \\
+        Maximální váha věci & $7000 \dots 15000$ \\
+        Maximální cena věci & $5000$ \\
+        Exponent $k$ & $1$ \\
+        Poměr velikostí věcí v batohu & $0$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{Výsledky měření}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{inputs-bb-weight/inputs-bb-weight.png}
+    \caption{Parametry k metodě větví a hranic, měněný parametr váha}
+    \label{fig:g1}
+\end{figure}
+
+\subsection{Metoda větví a hranic - měněný parametr poměr ceny}
+
+\subsubsection*{Konfigurace generátoru}
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{ |l|l| } 
+        \hline
+        Parametr & Hodnota \\
+        \hline
+        \hline
+        Počet věcí & $27$ \\
+        Počet instancí & $20$ \\
+        Poměr kapacity batohu k sumární váze & $0.1 \dots 1.0$ \\
+        Maximální váha věci & $12000$ \\
+        Maximální cena věci & $100$ \\
+        Exponent $k$ & $1$ \\
+        Poměr velikostí věcí v batohu & $0$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{Výsledky měření}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{inputs-bb-ratio/inputs-bb-ratio.png}
+    \caption{Parametry k metodě větví a hranic, měněný parametr poměr ceny}
+    \label{fig:g2}
+\end{figure}
+
+\subsection{Dynamické programování - měněný parametr cena}
+
+\subsubsection*{Konfigurace generátoru}
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{ |l|l| } 
+        \hline
+        Parametr & Hodnota \\
+        \hline
+        \hline
+        Počet věcí & $27$ \\
+        Počet instancí & $15$ \\
+        Poměr kapacity batohu k sumární váze & $0.5$ \\
+        Maximální váha věci & $200$ \\
+        Maximální cena věci & $10000 \dots 20000$ \\
+        Exponent $k$ & $1$ \\
+        Poměr velikostí věcí v batohu & $0$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{Výsledky měření}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{inputs-dp-price/inputs-dp-price.png}
+    \caption{Parametry k metodě dynamického programování, měněný parametr cena}
+    \label{fig:g3}
+\end{figure}
+
+\subsection{Parametry k heuristické metodě, měněný parametr cena}
+
+\subsubsection*{Konfigurace generátoru}
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{ |l|l| } 
+        \hline
+        Parametr & Hodnota \\
+        \hline
+        \hline
+        Počet věcí & $25$ \\
+        Počet instancí & $15$ \\
+        Poměr kapacity batohu k sumární váze & $0.5$ \\
+        Maximální váha věci & $200$ \\
+        Maximální cena věci & $10000 \dots 40000$ \\
+        Exponent $k$ & $1$ \\
+        Poměr velikostí věcí v batohu & $1$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{Výsledky měření}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{inputs-heuristic-granularity/inputs-heuristic-granularity.png}
+    \caption{Parametry k heuristické metodě, měněný parametr cena}
+    \label{fig:g4}
+\end{figure}
+
+\subsection{Parametry k heuristické metodě, měněný parametr granularita}
+
+\subsubsection*{Konfigurace generátoru}
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{ |l|l| } 
+        \hline
+        Parametr & Hodnota \\
+        \hline
+        \hline
+        Počet věcí & $20$ \\
+        Počet instancí & $20$ \\
+        Poměr kapacity batohu k sumární váze & $0.5$ \\
+        Maximální váha věci & $30$ \\
+        Maximální cena věci & $100$ \\
+        Exponent $k$ & $0 \dots 6$ \\
+        Poměr velikostí věcí v batohu & $1$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{Výsledky měření}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{inputs-heuristic-price/inputs-heuristic-price.png}
+    \caption{Parametry k heuristické metodě, měněný parametr granularita}
+    \label{fig:g5}
+\end{figure}
 
 \section{Závěr}
 
