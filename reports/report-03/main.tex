@@ -67,7 +67,7 @@ Měněný parametr jsem volil tak, aby reflektoval vlastnosti jednotlivých algo
 
 Měření bylo pro zajištění přesnosti prováděno vícekrát.
 
-\subsection{Metoda větví a hranic - měněný parametr váha}
+\subsection{Metoda větví a hranic -- měněný parametr váha}
 
 \subsubsection*{Konfigurace generátoru}
 
@@ -98,7 +98,11 @@ Měření bylo pro zajištění přesnosti prováděno vícekrát.
     \label{fig:g1}
 \end{figure}
 
-\subsection{Metoda větví a hranic - měněný parametr poměr ceny}
+Z naměřených dat v grafu \ref{fig:g1} vyplývá, že metoda větví a hranic neni významně závislá na změně maximální ceny položky batohu.
+To může být ovlivněno průchodem stavového prostoru, od kterého se časová složitost této metody odvíjí.
+Z výsledku lze usoudit, že změna maximální ceny neovlivňuje výrazným způsobem velikost procházeného stavového prostoru.
+
+\subsection{Metoda větví a hranic -- měněný parametr poměr kapacity batohu k sumární váze}
 
 \subsubsection*{Konfigurace generátoru}
 
@@ -125,11 +129,16 @@ Měření bylo pro zajištění přesnosti prováděno vícekrát.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{inputs-bb-ratio/inputs-bb-ratio.png}
-    \caption{Parametry k metodě větví a hranic, měněný parametr poměr ceny}
+    \caption{Parametry k metodě větví a hranic, měněný parametr poměr kapacity batohu k k sumární váze}
     \label{fig:g2}
 \end{figure}
 
-\subsection{Dynamické programování - měněný parametr cena}
+Při změně poměru kapacity batohu k sumární váze je podle grafu \ref{fig:g2} vidět, že časová náročnost k nalezení optimálního řešení s rostoucím poměrem klesá.
+Tento výsledek naplňuje očekávání.
+S rostoucím poměrem roste pravděpodobnost, že optimální řešení nalezneme v krátkém čase a velká část statového prostoru může být při průchodu vynechána.
+S roustoucím poměrem dochází k významnému zlepšení časové složitosti a algoritmus nalézá řešení ve výrazně kratším čase.
+
+\subsection{Dynamické programování -- měněný parametr cena}
 
 \subsubsection*{Konfigurace generátoru}
 
@@ -160,38 +169,12 @@ Měření bylo pro zajištění přesnosti prováděno vícekrát.
     \label{fig:g3}
 \end{figure}
 
-\subsection{Parametry k heuristické metodě, měněný parametr cena}
+Metoda dynamického programování je dle výsledků měření uvedených v grafu \ref{fig:g3} citlivá na rostoucí cenu.
+To plyne ze samotné vlastnosti tohoto pseudopolynomiálního algoritmu.
+V případě řešení pomocí dekompozice podle ceny je sice algoritmus polynomiálně závislý na velikosti vstupu, ale záleží také na parametru ceny, kde je závislost až exponencionální.
+Měření této metody naplnila očekávání, kde od určité počáteční hodnoty je křivka rize rostoucí.
 
-\subsubsection*{Konfigurace generátoru}
-
-\begin{table}[H]
-\centering
-    \begin{tabular}{ |l|l| } 
-        \hline
-        Parametr & Hodnota \\
-        \hline
-        \hline
-        Počet věcí & $25$ \\
-        Počet instancí & $15$ \\
-        Poměr kapacity batohu k sumární váze & $0.5$ \\
-        Maximální váha věci & $200$ \\
-        Maximální cena věci & $10000 \dots 40000$ \\
-        Exponent $k$ & $1$ \\
-        Poměr velikostí věcí v batohu & $1$ \\
-        \hline
-    \end{tabular}
-\end{table}
-
-\subsubsection*{Výsledky měření}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{inputs-heuristic-granularity/inputs-heuristic-granularity.png}
-    \caption{Parametry k heuristické metodě, měněný parametr cena}
-    \label{fig:g4}
-\end{figure}
-
-\subsection{Parametry k heuristické metodě, měněný parametr granularita}
+\subsection{Parametry k heuristické metodě -- měněný parametr granularita}
 
 \subsubsection*{Konfigurace generátoru}
 
@@ -217,11 +200,56 @@ Měření bylo pro zajištění přesnosti prováděno vícekrát.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{inputs-heuristic-price/inputs-heuristic-price.png}
+    \includegraphics[width=0.8\textwidth]{inputs-heuristic-granularity/inputs-heuristic-granularity.png}
     \caption{Parametry k heuristické metodě, měněný parametr granularita}
     \label{fig:g5}
 \end{figure}
 
+Při měření kvality heuristické metody je využito měření průměrné relativní odchylky.
+Z grafu \ref{fig:g4} lze usoudit, že při zvyšování granularity se odchylka od správného řešení blíží hodnotě $0.5 \%$ a má spíše klesající charakter.
+Toto měření ale může být značně nepřesné z důvodu malého počtu testovacích dat (6 testovaných hodnot).
+Nízký počet testovaných hodnot byl dát vysokou časovou náročností pro generování testovacích vstupů.
+
+\subsection{Parametry k heuristické metodě -- měněný parametr cena}
+
+\subsubsection*{Konfigurace generátoru}
+
+\begin{table}[H]
+\centering
+    \begin{tabular}{ |l|l| } 
+        \hline
+        Parametr & Hodnota \\
+        \hline
+        \hline
+        Počet věcí & $25$ \\
+        Počet instancí & $15$ \\
+        Poměr kapacity batohu k sumární váze & $0.5$ \\
+        Maximální váha věci & $200$ \\
+        Maximální cena věci & $10000 \dots 40000$ \\
+        Exponent $k$ & $1$ \\
+        Poměr velikostí věcí v batohu & $1$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{Výsledky měření}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{inputs-heuristic-price/inputs-heuristic-price.png}
+    \caption{Parametry k heuristické metodě, měněný parametr cena}
+    \label{fig:g4}
+\end{figure}
+
+Obdobně jako v grafu \ref{fig:g4} tak i v grafu \ref{fig:g5} je vidět spíše klesající trend průměrné relativní odchylky.
+Tato dota jsou navíc z důvodu většího počtu testovacích dat více vypovídající.
+U naměřených hodnot je patrné, že žádná z hodnot nemá extrémní výkyv a lze tedy usuzovat, že kvalitu řešení cena zboží neovlivňuje nikterak drasticky.
+
 \section{Závěr}
+
+Naměřené údaje všech metod převážně potvrzují vlastnosti uvedené v předchozích úlohách.
+Jediným výrazným překvapujícím měřením jsou vlastnosti metody větví a hranic při změně maximální váhy.
+První úvahy vedou k domněnce, že s rostoucí cenou bude také růst časová složitost této metody.
+Po hlubším uvážení lze ale usoudit, že velikost procházeného stavového prostoru se více odvíjí od poměru kapacity k sumární váze, což také potvrzuje druhé měření.
 
 \end{document}
