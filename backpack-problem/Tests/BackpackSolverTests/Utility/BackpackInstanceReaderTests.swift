@@ -27,7 +27,7 @@ class BackpackInstanceReaderTests: XCTestCase {
     }
 
     func testSingleFileIsReadProperly() {
-        let instance = try! subject.readFile(at: URL(string: "0")!, ofType: BackpackProblemInstance.self)!
+        let instance = try! subject.readFile(at: URL(string: "0")!, ofType: BackpackProblemInstance.self)!.content
 
         XCTAssertEqual(instances[0], instance)
     }
@@ -41,7 +41,7 @@ class BackpackInstanceReaderTests: XCTestCase {
         for iterator in 0..<self.instances.count {
             for index in 0..<self.instances[iterator].count {
                 let reference = self.instances[iterator][index]
-                let instance = instances[iterator][index]
+                let instance = instances[iterator].content[index]
 
                 XCTAssertEqual(reference, instance)
             }
