@@ -7,9 +7,39 @@
 
 import Foundation
 
-class SimulatedAnnealingFittingStrategy: BackpackFittingStrategyType {
-    static func fit(items: [BackpackItem], maxWeight: Int) -> BackpackFittingResult? {
-        return nil
+public class SimulatedAnnealingFittingStrategy: BackpackFittingStrategyType {
+    public static func fit(items: [BackpackItem], maxWeight: Int) -> BackpackFittingResult? {
+        let skeletonRetries = 40
+        let minimalTemperature = 1.0
+        let temperatureFactor = 0.9
+
+        var bestSolution = randomSolution(for: items, maxWeight: maxWeight)
+        var currentTemperature = Double(items.count * 5)
+
+        while currentTemperature > minimalTemperature {
+            let newSolution = neighborSolution(for: bestSolution, with: maxWeight,
+                                               retriesCount: skeletonRetries)
+            let acceptancePropability = solutionAcceptanceProbability(current: bestSolution, new: newSolution,
+                                                                      temperature: currentTemperature)
+
+            // Accept the new solution
+            if acceptancePropability > Random.normalized() {
+                bestSolution = newSolution
+            }
+
+            // Cool the temperature
+            currentTemperature *= temperatureFactor
+        }
+
+        return BackpackFittingResult(weight: bestSolution.weight, value: bestSolution.value)
+    }
+
+    private static func solutionAcceptanceProbability(current: BackpackSolutionSkeleton,
+                                                      new: BackpackSolutionSkeleton, temperature: Double) -> Double {
+
+        let exponent = Double(new.value - current.value) / temperature
+
+        return exp(exponent)
     }
 
     private static func neighborSolution(for skeleton: BackpackSolutionSkeleton,
