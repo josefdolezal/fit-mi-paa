@@ -11,60 +11,33 @@ import BackpackSolver
 import Measurement
 import DataFormatter
 
-enum StrategyType: String {
-    case dynamic = "0"
-    case heuristic = "1"
-    case bb = "2"
+func test(instance: BackpackProblemInstance, against solution: BackpackProblemSolution, strategy: BackpackFittingStrategyType.Type) -> (Double, Double) {
+    let durationBenchmark = FittingStrategyBenchmark.duration(strategy: strategy, on: instance)
+    let accuracyBenchmark = FittingStrategyBenchmark.accuracy(of: durationBenchmark.result, against: solution)
 
-    var strategy: BackpackFittingStrategyType.Type {
-        switch self {
-        case .dynamic: return DynamicFittingStrategy.self
-        case .heuristic: return BestRatioBackpackFittingStrategy.self
-        case .bb: return BBFittingStrategy.self
-        }
-    }
-}
-
-guard CommandLine.arguments.count == 3 else {
-    print("No inputs folder specified")
-    exit(1)
-}
-
-let directory = CommandLine.arguments[1]
-
-guard let strategy = StrategyType(rawValue: CommandLine.arguments[2]) else {
-    print("Ukniwn strategy")
-    exit(1)
-}
-
-func test(instance: BackpackProblemInstance, strategy: BackpackFittingStrategyType.Type) -> (Double) {
-    let accb = FittingStrategyBenchmark.duration(strategy: BBFittingStrategy.self, on: instance)
-    let solution = BackpackProblemSolution(id: "", backpackValue: accb.result.value)
-    let benchmark = FittingStrategyBenchmark.duration(strategy: strategy, on: instance)
-
-    print("benchmark done: \(benchmark.duration)")
-
-    print(solution.backpackValue)
-    print(benchmark.result.value)
-
-    return FittingStrategyBenchmark.accuracy(of: benchmark.result, against: solution)
+    return (durationBenchmark.duration, accuracyBenchmark * 100)
 }
 
 let filesReader = BackpackInstanceReader(fileManager: FileManager.default)
 
-let fileContents = try! filesReader.readFiles(at: URL(fileURLWithPath: directory), ofType: BackpackProblemInstance.self) {
-    return $0.lastPathComponent.split(separator: ".").last != "sh"
-}
+let inputs = try! filesReader.readFiles(at: URL(fileURLWithPath: "Input"), ofType: BackpackProblemInstance.self)
+let outputs = try! filesReader.readFiles(at: URL(fileURLWithPath: "Output"), ofType: BackpackProblemSolution.self)
 
-let times = fileContents.map { file -> (Double, Double) in
-    let times = file.content.map { test(instance: $0, strategy: strategy.strategy) }
+let times = zip(inputs, outputs).map { input, output -> (Int, Double) in
+    let fileBenchmarks = zip(input.content, output.content).map { instance, solution in
+        return test(instance: instance, against: solution, strategy: SimulatedAnnealingFittingStrategy.self)
+    }
+    let size = input.content.first!.backpackItems.count
+    let times = fileBenchmarks.map { $0.0 }
+    let accuracies = fileBenchmarks.map { $0.1 }
     let averageTime = times.average()!
-    let instanceSize = Double(file.fileName.split(separator: "-").last!)!
+    let averageAccuracy = accuracies.average()!
 
-    print("⚠️ [\(instanceSize) instances] Test case complete")
-    print("\t⌙ ℹ️ Average time (All cases): \(averageTime)")
+    print("⚠️ [\(size)] Test case complete")
+    print("\t⌙ ℹ️ Average time: \(averageTime)")
+    print("\t⌙ ℹ️ Average accuracy: \(averageAccuracy) %")
 
-    return (instanceSize, averageTime)
+    return (size, averageTime)
 }
 
 let graph = GnuplotGraph(headings: Headings(x: "X", y: "Y"))
