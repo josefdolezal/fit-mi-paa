@@ -14,17 +14,24 @@ public class SimulatedAnnealingFittingStrategy: BackpackFittingStrategyType {
         let temperatureFactor = 0.9
 
         var bestSolution = randomSolution(for: items, maxWeight: maxWeight)
+        var currentSolution = bestSolution
         var currentTemperature = Double(items.count * 5)
 
         while currentTemperature > minimalTemperature {
-            let newSolution = neighborSolution(for: bestSolution, with: maxWeight,
-                                               retriesCount: skeletonRetries)
-            let acceptancePropability = solutionAcceptanceProbability(current: bestSolution, new: newSolution,
-                                                                      temperature: currentTemperature)
+            for _ in 0...skeletonRetries {
+                let newSolution = neighborSolution(for: currentSolution, with: maxWeight,
+                                                   retriesCount: skeletonRetries)
+                let acceptancePropability = solutionAcceptanceProbability(current: currentSolution, new: newSolution,
+                                                                          temperature: currentTemperature)
 
-            // Accept the new solution
-            if acceptancePropability > Random.normalized() {
-                bestSolution = newSolution
+                // Accept the new solution
+                if acceptancePropability > Random.normalized() {
+                    currentSolution = newSolution
+                }
+
+                if currentSolution.value > bestSolution.value {
+                    bestSolution = newSolution
+                }
             }
 
             // Cool the temperature
@@ -90,7 +97,7 @@ struct BackpackSolutionSkeleton {
         let switchedIndexValue = !skeleton[switchedIndex]
         let switchedItem = items.value[switchedIndex]
         let newValue = value + switchedIndexValue.map { $0 ? switchedItem.value : -switchedItem.value }
-        let newWeight = weight + switchedIndexValue.map { $0 ? switchedItem.weight : switchedItem.weight }
+        let newWeight = weight + switchedIndexValue.map { $0 ? switchedItem.weight : -switchedItem.weight }
         var newSkeleton = skeleton
 
         newSkeleton[switchedIndex] = switchedIndexValue
