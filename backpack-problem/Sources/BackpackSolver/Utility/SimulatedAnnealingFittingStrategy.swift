@@ -12,6 +12,20 @@ class SimulatedAnnealingFittingStrategy: BackpackFittingStrategyType {
         return nil
     }
 
+    private static func neighborSolution(for skeleton: BackpackSolutionSkeleton,
+                                         with maxWeight: Int, retriesCount: Int) -> BackpackSolutionSkeleton {
+
+        for _ in 0...retriesCount {
+            let newSolution = skeleton.neighbor()
+
+            if newSolution.weight <= maxWeight {
+                return newSolution
+            }
+        }
+
+        return skeleton
+    }
+
     private static func randomSolution(for items: [BackpackItem], maxWeight: Int) -> BackpackSolutionSkeleton {
         let randomSkeleton = items.map { _ in arc4random() % 2 == 1 }
         let (value, weight) = zip(items, randomSkeleton)
@@ -39,5 +53,18 @@ struct BackpackSolutionSkeleton {
         self.weight = weight
         self.items = Reference(initial: items)
         self.skeleton = skeleton
+    }
+
+    func neighbor() -> BackpackSolutionSkeleton {
+        let switchedIndex = Random.withUpperBound(items.value.count)
+        let switchedIndexValue = !skeleton[switchedIndex]
+        let switchedItem = items.value[switchedIndex]
+        let newValue = value + switchedIndexValue.map { $0 ? switchedItem.value : -switchedItem.value }
+        let newWeight = weight + switchedIndexValue.map { $0 ? switchedItem.weight : switchedItem.weight }
+        var newSkeleton = skeleton
+
+        newSkeleton[switchedIndex] = switchedIndexValue
+
+        return BackpackSolutionSkeleton(value: newValue, weight: newWeight, items: items.value, skeleton: newSkeleton)
     }
 }
