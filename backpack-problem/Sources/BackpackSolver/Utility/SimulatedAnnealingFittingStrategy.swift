@@ -27,7 +27,7 @@ class SimulatedAnnealingFittingStrategy: BackpackFittingStrategyType {
     }
 
     private static func randomSolution(for items: [BackpackItem], maxWeight: Int) -> BackpackSolutionSkeleton {
-        let randomSkeleton = items.map { _ in arc4random() % 2 == 1 }
+        let randomSkeleton = items.map { _ in Random.boolean() }
         let (value, weight) = zip(items, randomSkeleton)
             .filter { items, included in included }
             .map { item, _ in item }
