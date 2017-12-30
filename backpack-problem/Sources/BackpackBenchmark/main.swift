@@ -11,6 +11,12 @@ import BackpackSolver
 import Measurement
 import DataFormatter
 
+let skeletonRetries = Int(CommandLine.arguments[1])!
+let initialTemperature = Double(CommandLine.arguments[2])!
+let temperatureFactor = Double(CommandLine.arguments[3])!
+
+SimulatedAnnealingConfiguration.set(skeletonRetries: skeletonRetries, initialTemperature: initialTemperature, temperatureFactor: temperatureFactor)
+
 func test(instance: BackpackProblemInstance, against solution: BackpackProblemSolution, strategy: BackpackFittingStrategyType.Type) -> (Double, Double) {
     let durationBenchmark = FittingStrategyBenchmark.duration(strategy: strategy, on: instance)
     let accuracyBenchmark = FittingStrategyBenchmark.accuracy(of: durationBenchmark.result, against: solution)

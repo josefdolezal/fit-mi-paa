@@ -7,15 +7,38 @@
 
 import Foundation
 
+public class SimulatedAnnealingConfiguration {
+
+    public let skeletonRetries: Int
+
+    public let initialTemperature: Double
+
+    public let temperatureFactor: Double
+
+    private(set) static var `default` = SimulatedAnnealingConfiguration(skeletonRetries: 40, initialTemperature: 200, temperatureFactor: 0.9)
+
+    private init(skeletonRetries: Int, initialTemperature: Double, temperatureFactor: Double) {
+        self.skeletonRetries = skeletonRetries
+        self.initialTemperature = initialTemperature
+        self.temperatureFactor = temperatureFactor
+    }
+
+    public static func set(skeletonRetries: Int, initialTemperature: Double, temperatureFactor: Double) {
+        SimulatedAnnealingConfiguration.default = .init(skeletonRetries: skeletonRetries,
+                                                        initialTemperature: initialTemperature,
+                                                        temperatureFactor: temperatureFactor)
+    }
+}
+
 public class SimulatedAnnealingFittingStrategy: BackpackFittingStrategyType {
     public static func fit(items: [BackpackItem], maxWeight: Int) -> BackpackFittingResult? {
-        let skeletonRetries = 40
+        let skeletonRetries = SimulatedAnnealingConfiguration.default.skeletonRetries
         let minimalTemperature = 1.0
-        let temperatureFactor = 0.9
+        let temperatureFactor = SimulatedAnnealingConfiguration.default.temperatureFactor
 
         var bestSolution = randomSolution(for: items, maxWeight: maxWeight)
         var currentSolution = bestSolution
-        var currentTemperature = Double(items.count * 5)
+        var currentTemperature = SimulatedAnnealingConfiguration.default.initialTemperature
 
         while currentTemperature > minimalTemperature {
             for _ in 0...skeletonRetries {
