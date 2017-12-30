@@ -64,7 +64,7 @@ Takto algoritmus pokračuje dokud nedosáhne maximálního počtu kroků.
 Algoritmus se skládá ze dvou vnořených smyček.
 Vnější reprezentuje aktuální teplotu.
 Vnitřní smyčka pro každou teplotu vybírá náhodné sousední řešení.
-Počet vnějších smyček je dán ochlazováním aktuální teploty.
+Počet iterací vnější smyčky je dán ochlazováním aktuální teploty.
 
 Měření jsou prováděna na ukázkových vstupech.
 
@@ -111,9 +111,9 @@ Počáteční teplotu algoritmu jsem volil podle vzorce $n*k$, kde $n$ je počet
 
 Z grafu \ref{fig:dur-initial-temperature} lze vyčíst, že pro malé instance je simulované ochlazování časově zbytečně složité.
 Pro instance o alespoň 30 položkách je vidět, že časová složitost nepatrně roste.
-Dle očekávání pak mají časovou složitost vyšší ty instance, kde počáteční teplota byla vyšší (dáno vyšším počtem cyklů).
+Dle očekávání pak mají časovou složitost vyšší ty instance, kde počáteční teplota byla vyšší (dáno vyšším počtem vnějších cyklů).
 
-Graf \ref{fig:acc-initial-temperature} naopak znázorňuje výrazný (i prřesto ale linární) růst relativní chyby.
+Graf \ref{fig:acc-initial-temperature} naopak znázorňuje výrazný (i přesto ale linární) růst relativní chyby.
 Tento růst je ale vidět u všech počátečních teplot a pravděpodobně je tedy více ovlivněn počtem instancí spíše než teplotou samotnout.
 
 \subsection{Iterace vnitřní smyčky}
@@ -172,7 +172,7 @@ Z naměřených výsledků se jako optimální faktor snížení teploty jeví n
 
 \section{Závěr}
 
-Naměřená data pro časovou náročnost odpovídají předpokladům, že s zvyšujícími se nároky je doba výpočtu vyšší.
+Naměřená data pro časovou náročnost odpovídají předpokladům, že se zvyšujícími se nároky je doba výpočtu vyšší.
 Pro zkoumané instance je navíc časová náročnost i u zvýšených požadavků přijatelná -- výsledky jsou okamžité.
 
 Oproti všem očekáváním vyšla ale měření relativní odchylky.
