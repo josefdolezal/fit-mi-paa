@@ -172,4 +172,23 @@ Z naměřených výsledků se jako optimální faktor snížení teploty jeví n
 
 \section{Závěr}
 
+Naměřená data pro časovou náročnost odpovídají předpokladům, že s zvyšujícími se nároky je doba výpočtu vyšší.
+Pro zkoumané instance je navíc časová náročnost i u zvýšených požadavků přijatelná -- výsledky jsou okamžité.
+
+Oproti všem očekáváním vyšla ale měření relativní odchylky.
+V souladu s měřeními jiných metod řešení (heuristika poměr cena/váha, B\&B, \dots) jsem očekával s rostoucím počtem položek batohu snižující se odchylku.
+Ze všech provedených měření ale vyplývá, že chyba roste spolu se zvyšujícím se počtem položek.
+Pro ověření správnosti jsem experiment vícekrát opakoval, ale vždy se stejným trendem výsledků.
+
+Z uvedených měření mi jako idelání konfigurace vzešly následující hodnoty: \\
+
+
+\begin{tabular}{ | l | l | }
+    \hline
+    Parametr & Hodnota \\ \hline \hline
+    Počáteční teplota & $320$ \\
+    Iterace vnitřní smyčky & $400$ \\
+    Rychlost ochlazování & $0.95$ \\ \hline
+\end{tabular}
+
 \end{document}
