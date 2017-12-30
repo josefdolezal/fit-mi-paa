@@ -30,12 +30,54 @@
 \newpage
 
 \section{Úvod}
+Problémem batohu se nazývá úloha, ve které je za úkol pro množinu $n$ předmětů a batoh o maximální nosnosti $m$ určit, jak předměty do batohu vložit tak, aby v součtu měly co největší hodnotu a zároveň nebyla překročena maximální nosnost batohu.
+
+Vstupem je tedy seznam $n$ předmětů (dvojic váha-cena) a maximální nosnost batohu $m$.
+Výstupem je v součtu nejvyšší možná cena předmětů, jejichž váha dohromady nepřekročí nosnost.
 
 \section{Zadání úlohy}
 
+\begin{itemize}
+    \item Zvolte si heuristiku, kterou budete řešit problém vážené splnitelnosti booleovské formule:
+    \begin{itemize}
+        \item simulované ochlazování,
+        \item simulovaná evoluce,
+        \item tabu prohledávání.
+    \end{itemize}
+    \item Tuto heuristiku použijte pro řešení problému batohu. Můžete použít dostupné instance problému, anebo si vygenerujte své.
+    \item Hlavním cílem domácí práce je seznámit se s danou heuristikou, zejména se způsobem, jakým se nastavují její parametry a modifikace.
+    \item Problém batohu není příliš obtížný, většinou budete mít k dispozici globální maxima (exaktní řešení) z předchozích prací, například z dynamického programování.
+\end{itemize}
+
 \section{Rámcový popis řešení}
 
+Pro řešení problému jsem zvolil metodu simulovaného ochlazování.
+Simulované ochlazování je iterativní algoritmus, který se snaží v jednotlivých iteracích uniknout z lokálního maxima dočasným přijetím horšího výsledku.
+
+Algoritmus v prvním kroku zvolí náhodné řešení problému (tedy libovolnou konfiguraci, která je řešením) a spočítá jeho hodnotu (součet hodnot vložených položek).
+Následně ve smyčce generuje sousední řešení (taková, která se liší pouze v přidání resp. odebrání právě jedné věci).
+Pokud je nové řešení lepší, je vždy přijato.
+Pokud je horší, je přijato na základě \textit{pravděpodobnosti přijetí}, která je porovnána s náhodným číslem z intervalu $[0, 1]$.
+Takto algoritmus pokračuje dokud nedosáhne maximálního počtu kroků.
+
+Algoritmus se skládá ze dvou vnořených smyček.
+Vnější reprezentuje aktuální teplotu.
+Vnitřní smyčka pro každou teplotu vybírá náhodné sousední řešení.
+Počet vnějších smyček je dán ochlazováním aktuální teploty.
+
+Měření jsou prováděna na ukázkových vstupech.
+
 \subsection*{Měnitelné parametry}
+
+Z výše uvedeného popisu algoritmu vyplývá, že měnitelnými parametry algoritmu jsou:
+
+\begin{itemize}
+    \item počáteční teplota,
+    \item počet hledání sousedního řešení pro aktuální teplotu,
+    \item rychlost ochlazování aktuální teploty.
+\end{itemize}
+
+Pro každý z nich v práci zkoumám čas běhu a relativní odchylku.
 
 \section{Výsledky měření}
 
