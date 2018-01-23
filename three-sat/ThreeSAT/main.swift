@@ -8,5 +8,20 @@
 
 import Foundation
 
-print("Hello, World!")
+let subject = Parse.parse(input: """
+        c This is a comment
+        c This is another comment
+        p cnf 6 3
+        w 25 50 30
+        1 -2 3 0
+        2 4 5 0
+        1 6 0
+        """)
 
+print(subject)
+
+//subject.reduce(true) { $0 && $1.satisfiable() }
+
+subject.first?.literals.first?.value = true
+
+print(subject)

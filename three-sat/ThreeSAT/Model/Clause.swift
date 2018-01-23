@@ -8,8 +8,10 @@
 
 import Foundation
 
-class Clause {
+class Clause: CustomStringConvertible {
     let literals: [Literal]
+
+    var description: String { return literals.description }
 
     init(literals: [Literal]) {
         self.literals = literals

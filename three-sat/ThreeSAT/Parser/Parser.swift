@@ -15,11 +15,15 @@ class Parse {
     private struct Format {
         static let clauseSeparator = "0"
         static let formulaSeparator = " "
+        static let newLineSeparator = "\n"
+        static let commentPrefix = "c"
     }
 
     static func parse(input: String) -> [Clause] {
-        let clauses = input.components(separatedBy: Format.clauseSeparator)
         var context = Context()
+        let clearedString = readVariableWeights(from: readProblem(from: removeComments(from: input)), context: &context)
+        let clauses = clearedString
+            .components(separatedBy: Format.clauseSeparator)
 
         return clauses.map { clause in
             return parseClause(input: clause, with: &context)
@@ -28,7 +32,7 @@ class Parse {
 
     private static func parseClause(input: String, with context: inout Context) -> Clause {
         let literals = input
-            .components(separatedBy: Format.formulaSeparator)
+            .components(separatedBy: CharacterSet.whitespacesAndNewlines)
             .flatMap { literal in
                 return lookup(literal: literal, in: &context)
             }
@@ -37,12 +41,41 @@ class Parse {
     }
 
     private static func lookup(literal: String, in context: inout Context) -> Literal? {
-        guard let value = Int(literal) else { return nil }
-        let key = String(value)
-        let formula = context[key] ?? Formula(value: false)
-
-        context[key] = formula
+        guard
+            let value = Int(literal),
+            let formula = context[String(abs(value))]
+        else { return nil }
 
         return value < 0 ? Not(formula: formula) : formula
+    }
+
+    private static func removeComments(from input: String) -> String {
+        return input
+            .components(separatedBy: Format.newLineSeparator)
+            .filter { !$0.hasPrefix(Format.commentPrefix) }
+            .joined(separator: Format.newLineSeparator)
+    }
+
+    private static func removeLine(from string: String) -> String {
+        if let index = string.index(of: Character(Format.newLineSeparator)) {
+            return String(string.substring(from: string.index(after: index)))
+        }
+
+        return string
+    }
+
+    private static func readProblem(from input: String) -> String {
+        return removeLine(from: input)
+    }
+
+    private static func readVariableWeights(from input: String, context: inout Context) -> String {
+        input.components(separatedBy: Format.formulaSeparator)
+            .flatMap(Int.init)
+            .enumerated()
+            .forEach { offset, weight in
+                context[String(offset + 1)] = Formula(value: false, weight: weight)
+            }
+
+        return removeLine(from: input)
     }
 }
