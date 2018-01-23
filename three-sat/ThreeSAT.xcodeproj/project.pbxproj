@@ -11,6 +11,7 @@
 		D26BF904201687890023C35F /* Clause.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF903201687890023C35F /* Clause.swift */; };
 		D26BF90720168A7A0023C35F /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF90620168A7A0023C35F /* Parser.swift */; };
 		D2986C34201685FF008CF791 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2986C33201685FF008CF791 /* main.swift */; };
+		D2F5350A2017892200F34DF7 /* SATInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F535092017892200F34DF7 /* SATInstance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		D26BF90620168A7A0023C35F /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		D2986C30201685FF008CF791 /* ThreeSAT */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThreeSAT; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2986C33201685FF008CF791 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D2F535092017892200F34DF7 /* SATInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATInstance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			children = (
 				D26BF901201686A10023C35F /* Literal.swift */,
 				D26BF903201687890023C35F /* Clause.swift */,
+				D2F535092017892200F34DF7 /* SATInstance.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			files = (
 				D26BF90720168A7A0023C35F /* Parser.swift in Sources */,
 				D2986C34201685FF008CF791 /* main.swift in Sources */,
+				D2F5350A2017892200F34DF7 /* SATInstance.swift in Sources */,
 				D26BF904201687890023C35F /* Clause.swift in Sources */,
 				D26BF902201686A10023C35F /* Literal.swift in Sources */,
 			);

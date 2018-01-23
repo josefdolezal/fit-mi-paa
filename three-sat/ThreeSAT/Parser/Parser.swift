@@ -19,15 +19,18 @@ class Parse {
         static let commentPrefix = "c"
     }
 
-    static func parse(input: String) -> [Clause] {
+    static func parse(input: String) -> SATInstance {
         var context = Context()
         let clearedString = readVariableWeights(from: readProblem(from: removeComments(from: input)), context: &context)
-        let clauses = clearedString
+        let clausesString = clearedString
             .components(separatedBy: Format.clauseSeparator)
 
-        return clauses.map { clause in
+        let clauses = clausesString.map { clause in
             return parseClause(input: clause, with: &context)
         }
+        let literals = Array(context.values)
+
+        return SATInstance(clauses: clauses, literals: literals)
     }
 
     private static func parseClause(input: String, with context: inout Context) -> Clause {
