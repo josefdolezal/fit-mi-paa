@@ -13,7 +13,7 @@ class Parse {
     private typealias Context = [String: Formula]
 
     private struct Format {
-        static let clauseSeparator = "0"
+        static let clauseSeparator = " 0"
         static let formulaSeparator = " "
         static let newLineSeparator = "\n"
         static let commentPrefix = "c"
@@ -61,7 +61,7 @@ class Parse {
 
     private static func removeLine(from string: String) -> String {
         if let index = string.index(of: Character(Format.newLineSeparator)) {
-            return String(string.substring(from: string.index(after: index)))
+            return String(string[string.index(after: index)...])
         }
 
         return string
@@ -72,7 +72,12 @@ class Parse {
     }
 
     private static func readVariableWeights(from input: String, context: inout Context) -> String {
-        input.components(separatedBy: Format.formulaSeparator)
+        guard let index = input.index(of: Character(Format.newLineSeparator)) else {
+            return input
+        }
+
+        input[..<index]
+            .components(separatedBy: Format.formulaSeparator)
             .flatMap(Int.init)
             .enumerated()
             .forEach { offset, weight in
