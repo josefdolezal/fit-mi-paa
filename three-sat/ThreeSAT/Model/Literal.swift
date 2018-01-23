@@ -8,15 +8,24 @@
 
 import Foundation
 
+extension Bool {
+    func map<T>(_ transform: (Bool) -> T) -> T {
+        return transform(self)
+    }
+}
+
 protocol Literal: class, CustomStringConvertible {
     var value: Bool { get set }
     var weight: Int { get }
+    var valuatedWeight: Int { get }
 }
 
 class Formula: Literal {
     var value: Bool
 
     let weight: Int
+
+    var valuatedWeight: Int { return value.map { $0 ? weight : 0 } }
 
     var description: String { return "Literal(\(value))" }
 
@@ -37,6 +46,8 @@ class Not: Literal {
     }
 
     var weight: Int { return formula.weight }
+
+    var valuatedWeight: Int { return value.map { $0 ? formula.weight : 0 } }
 
     let formula: Formula
 
