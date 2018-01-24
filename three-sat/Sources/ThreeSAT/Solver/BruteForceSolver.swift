@@ -30,12 +30,7 @@ class BruteForceSolver: SATSolver {
     }
 
     private func solve(valuatedInstance instance: SATInstance) -> SATSolution {
-        let satisfiable = instance.clauses.reduce(true) { $0 && $1.satisfiable() }
-        let weight = instance.clauses
-            .map { $0.valuatedWeight() }
-            .reduce(0, +)
-
-        return SATSolution(weight: satisfiable ? weight : 0, satisfiable: satisfiable)
+        return instance.configrationValue()
     }
 
     private func compareSolutions(lhs: SATSolution?, rhs: SATSolution?) -> SATSolution? {

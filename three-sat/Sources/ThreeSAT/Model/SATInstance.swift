@@ -16,4 +16,17 @@ class SATInstance {
         self.clauses = clauses
         self.literals = literals
     }
+
+    func solution() -> SATSolution? {
+        let configurationValue = configrationValue()
+
+        return configurationValue.satisfiable ? configurationValue : nil
+    }
+
+    func configrationValue() -> SATSolution {
+        let satisfiable = clauses.reduce(true) { $0 && $1.satisfiable() }
+        let weight = clauses.reduce(0) { $0 + $1.valuatedWeight() }
+
+        return SATSolution(weight: weight, satisfiable: satisfiable)
+    }
 }
