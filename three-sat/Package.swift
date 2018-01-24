@@ -10,7 +10,8 @@ let package = Package(
             name: "ThreeSAT",
             dependencies: []),
         .testTarget(
-            name: "ThreeSATTests"
+            name: "ThreeSATTests",
+            dependencies: ["ThreeSAT"]
         )
     ]
 )
