@@ -8,13 +8,23 @@
 
 import Foundation
 
-let subject = Parse.parse(input: """
-        c This is a comment
-        c This is another comment
-        p cnf 3 1
-        w 25 50 30
-        1 2 3
-        """)
+let satInstances: [SATInstance]
 
+do {
+    satInstances = try CommandLine.arguments
+        .suffix(from: 1)
+        .flatMap(URL.init(string:))
+        .map(FileLoader.loadFile(at:))
+        .map(Parse.parse(input:))
+} catch {
+    print("An error occured while processing input files: \(error.localizedDescription)")
+    print("Usage: <binary> INPUT_FILE [INPUT_FILE ...]")
 
-let solver = BruteForceSolver()
+    exit(1)
+}
+
+satInstances.forEach { instance in
+    let solver = BruteForceSolver()
+
+    print(solver.solve(instance: instance))
+}
