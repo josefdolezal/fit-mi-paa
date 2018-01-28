@@ -15,7 +15,7 @@ struct TimeComplexityMeasurement {
         let end = clock()
 
         let ticsCount = end - start
-        let duration = Double(ticsCount) / Double(EV_TICKS_PER_SEC)
+        let duration = Double(ticsCount) / Double(CLOCKS_PER_SEC)
 
         return (duration: duration, value: value)
     }
