@@ -24,11 +24,8 @@ class SimulatedAnnealingSolver: SATSolver {
     }
 
     func solve(instance: SATInstance) -> SATSolution? {
-        guard let initialSolution = randomSolution(for: instance) else {
-            return nil
-        }
-
-        var solution = initialSolution
+        var solution = generateSolution(for: instance)
+        var bestSolution = solution
         var temperature = initialTemperature
 
         while temperature > SimulatedAnnealingSolver.minimalTemperature {
@@ -36,20 +33,25 @@ class SimulatedAnnealingSolver: SATSolver {
                 let nextConfiguration = self.nextConfiguration(for: instance)
 
                 solution = compareSolutions(old: solution, new: nextConfiguration, at: temperature)
+
+                if solution.satisfiable && solution.weight > bestSolution.weight {
+                    bestSolution = solution
+                }
             }
 
             temperature *= annealingFactor
         }
 
-        return solution
+        return bestSolution.satisfiable ? bestSolution : nil
     }
 
     // MARK: Solution acceptance
 
     private func compareSolutions(old: SATSolution, new: SATSolution, at temperature: Double) -> SATSolution {
         let randomAcceptanceProbability = RandomService.nextNormalized()
+        let acceptanceProbability = solutionAcceptanceProbability(old: old, new: new, at: temperature)
 
-        if solutionAcceptanceProbability(old: old, new: new, at: temperature) > randomAcceptanceProbability {
+        if acceptanceProbability > randomAcceptanceProbability {
             return new
         }
 
@@ -76,9 +78,12 @@ class SimulatedAnnealingSolver: SATSolver {
     // MARK: - Initial solution
 
     // Try to randomly find solution
+    // Not used since it is uneffecient
     private func randomSolution(for instance: SATInstance) -> SATSolution? {
         for _ in 0...10_000 {
-            if let solution = generateSolution(for: instance) {
+            let solution = generateSolution(for: instance)
+
+            if solution.satisfiable {
                 return solution
             }
         }
@@ -87,13 +92,13 @@ class SimulatedAnnealingSolver: SATSolver {
     }
 
     // Randomly set each literal to true/false
-    private func generateSolution(for instance: SATInstance) -> SATSolution? {
+    private func generateSolution(for instance: SATInstance) -> SATSolution {
         instance.literals.forEach { literal in
             let literalIncluded = RandomService.nextBoolean()
 
             literal.value = literalIncluded
         }
 
-        return instance.solution()
+        return instance.configrationValue()
     }
 }
