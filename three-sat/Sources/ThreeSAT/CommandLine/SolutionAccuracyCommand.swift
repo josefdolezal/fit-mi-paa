@@ -20,7 +20,7 @@ fileprivate func measureTimeComplexity(initialTemperature: Double, annealingFact
     let satInstances = try inputs
         .flatMap(URL.init(string:))
         .map(FileLoader.loadFile(at:))
-        .map(Parse.parse(input:))
+        .map(Parser.parse(input:))
 
     let durations = satInstances.map { instance in
         TimeComplexityMeasurement.measure {

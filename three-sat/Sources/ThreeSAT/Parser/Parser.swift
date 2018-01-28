@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Parse {
+class Parser {
 
     private typealias Context = [String: Formula]
 
@@ -25,10 +25,12 @@ class Parse {
         let clausesString = clearedString
             .components(separatedBy: Format.clauseSeparator)
 
-        let clauses = clausesString.map { clause in
-            return parseClause(input: clause, with: &context)
-        }
         let literals = Array(context.values)
+        let clauses = clausesString.flatMap { clause -> Clause? in
+            let parsedClause = parseClause(input: clause, with: &context)
+
+            return parsedClause.literals.count > 0 ? parsedClause : nil
+        }
 
         return SATInstance(clauses: clauses, literals: literals)
     }
@@ -43,6 +45,8 @@ class Parse {
         return Clause(literals: literals)
     }
 
+    // MARK: Context lookup
+
     private static func lookup(literal: String, in context: inout Context) -> Literal? {
         guard
             let value = Int(literal),
@@ -52,20 +56,7 @@ class Parse {
         return value < 0 ? Not(formula: formula) : formula
     }
 
-    private static func removeComments(from input: String) -> String {
-        return input
-            .components(separatedBy: Format.newLineSeparator)
-            .filter { !$0.hasPrefix(Format.commentPrefix) }
-            .joined(separator: Format.newLineSeparator)
-    }
-
-    private static func removeLine(from string: String) -> String {
-        if let index = string.index(of: Character(Format.newLineSeparator)) {
-            return String(string[string.index(after: index)...])
-        }
-
-        return string
-    }
+    // MARK: Input readers
 
     private static func readProblem(from input: String) -> String {
         return removeLine(from: input)
@@ -85,5 +76,22 @@ class Parse {
             }
 
         return removeLine(from: input)
+    }
+
+    // MARK: Input Clean up
+
+    private static func removeComments(from input: String) -> String {
+        return input
+            .components(separatedBy: Format.newLineSeparator)
+            .filter { !$0.hasPrefix(Format.commentPrefix) }
+            .joined(separator: Format.newLineSeparator)
+    }
+
+    private static func removeLine(from string: String) -> String {
+        if let index = string.index(of: Character(Format.newLineSeparator)) {
+            return String(string[string.index(after: index)...])
+        }
+
+        return string
     }
 }
