@@ -12,3 +12,5 @@ let main = Group {
     $0.addCommand("time", timeComplexityCommand)
     $0.addCommand("accuracy", solutionAccuracyCommand)
 }
+
+main.run()
