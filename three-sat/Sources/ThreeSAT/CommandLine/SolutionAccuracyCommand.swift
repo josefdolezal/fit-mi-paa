@@ -5,7 +5,6 @@
 //  Created by Josef Dolezal on 27/01/2018.
 //
 
-import Foundation
 import Commander
 
 let solutionAccuracyCommand = command(
@@ -17,10 +16,7 @@ let solutionAccuracyCommand = command(
 
 fileprivate func measureTimeComplexity(initialTemperature: Double, annealingFactor: Double, equilibrium: Int, inputs: [String]) throws {
     let solver = SimulatedAnnealingSolver(initialTemperature: initialTemperature, annealingFactor: annealingFactor, equilibrium: equilibrium)
-    let satInstances = try inputs
-        .flatMap(URL.init(string:))
-        .map(FileLoader.loadFile(at:))
-        .map(Parser.parse(input:))
+    let satInstances = try InstanceSetupService.setup(fromFiles: inputs)
 
     let durations = satInstances.map { instance in
         TimeComplexityMeasurement.measure {
