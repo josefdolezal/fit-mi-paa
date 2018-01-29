@@ -30,7 +30,7 @@ class SimulatedAnnealingSolver: SATSolver {
 
         while temperature > SimulatedAnnealingSolver.minimalTemperature {
             for _ in 0...equilibrium {
-                let nextConfiguration = self.nextConfiguration(for: instance)
+                let nextConfiguration = self.nextConfiguration(for: instance, basedOn: solution)
 
                 solution = compareSolutions(old: solution, new: nextConfiguration, at: temperature)
 
@@ -66,13 +66,15 @@ class SimulatedAnnealingSolver: SATSolver {
 
     // MARK: - Neighbor configuration
 
-    private func nextConfiguration(for instance: SATInstance) -> SATSolution {
+    private func nextConfiguration(for instance: SATInstance, basedOn oldSolution: SATSolution) -> SATSolution {
         let updatedLiteralIndex = RandomService.next(withUpperBound: instance.literals.count)
-        let literalValue = instance.literals[updatedLiteralIndex].value
+        let newLiteralValue = !instance.literals[updatedLiteralIndex].value
+        let weightAdditionMultiplier = newLiteralValue ? -1 : 1
 
-        instance.literals[updatedLiteralIndex].value = !literalValue
+        instance.literals[updatedLiteralIndex].value = newLiteralValue
 
-        return instance.configrationValue()
+        return SATSolution(weight: oldSolution.weight + weightAdditionMultiplier,
+                           satisfiable: instance.satisfiable())
     }
 
     // MARK: - Initial solution

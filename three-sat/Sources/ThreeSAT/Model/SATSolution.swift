@@ -8,7 +8,16 @@
 
 import Foundation
 
-struct SATSolution {
+class SATSolution: CustomStringConvertible {
     let weight: Int
     let satisfiable: Bool
+
+    var description: String {
+        return "SATSolution(weight: \(weight), satifiable: \(satisfiable))"
+    }
+
+    init(weight: Int, satisfiable: Bool) {
+        self.weight = weight
+        self.satisfiable = satisfiable
+    }
 }
