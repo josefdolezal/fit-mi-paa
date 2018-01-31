@@ -34,7 +34,7 @@
 \section{Úvod}
 Problémem nalezení řešení vážené splnitelnosti boolevské formule se nazývá úloha, ve které je za úkol nalézt ohodnocení proměnných $x_1, \dots, x_n$ formule v konjuktivním normální tvaru takové, pro které je formule splnitelná a součet vah proměnných je maximální.
 
-Vstup tedy je množnina proměnných, kde každá má kladné ohodnocení.
+Vstupem tedy je množnina proměnných, kde každá má kladné ohodnocení.
 Dalším vstupem je množina klauzulí určující celkový tvar formule.
 
 Výstupem je číslo určující součet vah literálů, které jsou ohodnoceny jedničkou.
@@ -55,16 +55,16 @@ Takto omezený problém je stejně těžký, ale možná se lépe programuje a l
 \section{Rámcový popis řešení}
 
 Z definice plyne, že pro tento problém neexistuje efektivní algoritmus, který by v polynomiálním čase vrátil správné řešení nebo rozhodl o neřešitelnosti úlohy.
-Z tohoto důvodu je k řešení využita pokročilá heauristika \textit{Simulované ochlazování}.
+Z tohoto důvodu je k řešení využita pokročilá heuristika \textit{Simulované ochlazování}.
 
-Řešení úlohy je pomocí této optimalizační metody je inspirováno ve světě fyziky, konkrétně založené na metodě simulace žíhání oceli.
+Řešení úlohy pomocí této optimalizační metody je inspirováno ve světě fyziky, konkrétně založené na metodě simulace žíhání oceli.
 Tato metoda si klade za cíl neuváznout při hledání řešení v lokálním maximu.
 Toho se tato metoda snaží dosáhnout tak, že v závislosti na aktuálním nastavení a náhodném rozhodnutí dočasně přijme i takové řešení, které je horší než aktuálně nalezené.
-Tím se liší od běžných heuristik, které běžně přijímají jen řešení lepší než aktuálně nalezené a tím jsou náchyl k uváznutí v lokálních extrémech.
+Tím se liší od běžných heuristik, které přijímají jen řešení lepší než aktuálně nalezené a tím jsou náchylné k uváznutí v lokálních extrémech.
 
 \subsection{Popis algoritmu}
 
-Tento algoritmus se skládá z hlavních částí.
+Tento algoritmus se skládá ze čtyř hlavních částí.
 První částí je aktuální teplota -- ta určuje jak moc je algoritmus v dannou chvíli \uv{ochotný} přijmout horší řešení.
 Čím vyšší teplota je, tím spíše algoritmus neoptimální řešení přijme.
 Po dobu běhu algoritmu teplota stále klesá a tím klesá i \uv{ochota} přijímat horší řešení.
@@ -77,13 +77,13 @@ Třetí částí je \textit{equilibrium}, které určuje jak dlouho algoritmus s
 V dalším kroku dochází ke hledání \textit{sousedního} řešení.
 Sousedním řešením se rozumí takové řešení, které má ve stavovém prostoru hranu vedoucí k aktuálnímu řešení -- tedy změna ohodnocení jedné konkrétní proměnné.
 
-Nová konfigurace je přijata jako aktuální řešení, pokud řešením a zároveň je lepší než aktuálně nalezené řešení.
+Nová konfigurace je přijata jako aktuální řešení, pokud je řešením a zároveň je lepší než aktuálně nalezené řešení.
 Kvalita řešení je určena hodnotící funkcí, která je dána jako součet vah proměnných ohodnocených jedničkou.
 
 V případě kdy je nové řešení horší než aktuální, počítá se pravděpodobnost přijetí na základě aktuální teploty.
 Pravděpodobnost je vypočítána podle vzorce $a = e^\frac{c_{old} - c_{new}}{t}$, kde $c_{old}$ je aktuální řešení, $c_{new}$ je nově nalezené řešení a $t$ je aktuální teplota.
 Tato rovnost je inspirována ve fyzice, kde popisuje pohyb částic v oceli při určité teplotě.
-Výsledek rovnosti je následně porovnán s náhodným čísle, je-li $a$ větší než náhodné číslo z intervalu $[0, 1]$, pak je konfigurace přijata.
+Výsledek rovnosti je následně porovnán s náhodným číslem, je-li $a$ větší než náhodné číslo z intervalu $[0, 1]$, pak je konfigurace přijata.
 
 Po setrvání na jedné teplotě po předem definovanou dobu je snížena teplota a algoritmus prochází znovu od kroku 2.
 Algoritmus se zastaví po dosažení minimální definované teploty.
@@ -96,7 +96,7 @@ Počet iterací vnější smyčky je dán ochlazováním aktuální teploty.
 \subsection{Popis implementace}
 
 Pro implementaci jsem zvolil programovací jazyk Swift, který nabízí efektivní práci nejen z IDE, ale i příkazové řádky.
-Vstupní soubory vyžadují \textit{DIMACS} formát se zadanými váhami proměnných.
+Vstupní soubory vyžadují \textit{DIMACS} formát se zadanými vahami proměnných.
 
 Algoritmus pracuje s datovou strukturou instance \texttt{SATInstance}, která obsahuje množinu klauzulí a množinu literálů.
 Ty jsou reprezentovány rozhraním \texttt{Literal}, které implementuje proměnná \texttt{Formula} (zde jsem nezvolil adekvátní název, nicméně refaktorování Swiftu je poněkud nešťastné a tak jsem název ponechal) a negace proměnné \texttt{Not}.
@@ -107,7 +107,7 @@ Nové řešení algoritmus hledá prohozením hodnoty náhodného literálu a n�
 Splnitelnost formule je hledána průchodem všech klauzulí.
 Tuto část algoritmu jsem implementoval ve funkcionálním stylu (s využitím \texttt{map}, \texttt{filter} a \texttt{reduce}), což se při měření časové složitosti ukázalo jako velmi nevhodná volba.
 
-Vzhledem k využití množin jako kolekcí pro uložení literálů umí program zpracovat klauzule s libovolným počtem literálů či jejich negací, neni tedy omezen 3SAT.
+Vzhledem k využití množin jako kolekcí pro uložení literálů umí program zpracovat klauzule s libovolným počtem literálů či jejich negací, není tedy omezen na 3SAT.
 Všechna měření jsem ale prováděl právě na instancích 3SAT problému.
 
 Správnost algoritmu jsem ověřoval u vybraných instancí algoritmem hrubé síly.
@@ -146,8 +146,9 @@ Vstupní soubory jsem generoval programem dostupným z \cite{fw-gen}.
 Generování je automatizováno naskriptovanými scénáři, které je možné spustit příkazem \texttt{make}:
 
 \begin{itemize}
+    \item \texttt{release} -- kompilace programu s optimalizacemi,
     \item \texttt{fixtures} -- generuje adresářovou strukturu a vstupy pro měření,
-    \item \texttt{measure} -- spustí měření časové složitosti programu,
+    \item \texttt{measure} -- spustí měření časové složitosti programu a generuje \texttt{gnuplot} data,
     \item \texttt{graphs} -- vygeneruje z naměřených hodnot grafy programem \texttt{gnuplot}.
 \end{itemize}
 
@@ -175,7 +176,7 @@ Protože je měření prováděno pro více $n$, zvolil jsem jako referenční $
 Z grafu \ref{fig:initial-temperature} lze vyčíst, že až na jednu výjimku je růst převážně lineární.
 Dle očekávání mají časovou složitost vyšší ty instance, kde počáteční teplota byla vyšší (dáno vyšším počtem vnějších cyklů).
 Za zmínku stojí rozpětí hodnot.
-Rozdíl nejpomalejšího a nejrychlejší běhu je pouse $30$ ms, což je vzhledem na počet průchodů jen malá změna.
+Rozdíl nejpomalejšího a nejrychlejší běhu je pouse $30$ ms, což je vzhledem k počtu průchodů jen malá změna.
 
 \subsection{Iterace vnitřní smyčky}
 
@@ -216,7 +217,7 @@ Je ale naopak také patrné, že celkový běh není pro konkrétní velikost vn
 
 \subsubsection*{Komentář}
 
-Z grafů \ref{fig:annealing-factor} lze vyčíst, že přestože rychlým ochlazováním rapidně klesá časová složitost, relativní naopak roste.
+Z grafů \ref{fig:annealing-factor} lze vyčíst, že rychlým ochlazováním rapidně klesá časová složitost.
 Z naměřených výsledků se jako optimální faktor snížení teploty jeví násobek $0.9$.
 Zajímavým pozorováním je růst časové složitosti pro instance o $37$ prvcích, kde se pro všechna měření zvedl čas téměř sedminásobně.
 
