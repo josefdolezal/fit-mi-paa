@@ -1,9 +1,11 @@
+#!/bin/bash
 BIN=./dimacsgen
-SIZES='17 20 22 25'
 INSTANCE_SEQ=$(seq 1 20)
-STATIC_MAX_PRICE=150
-STATIC_CLAUSES=25
-TEMPERATURES=$(seq 125 25 250)
+STATIC_MAX_PRICE=500
+STATIC_CLAUSES=80
+
+SIZES='15 27 30 32 35 37 40'
+TEMPERATURES=$(seq 225 25 350)
 EQUILIBRIUMS=$(seq 100 100 500)
 ANNEALING_FACTORS='0.8 0.85 0.9 0.95 0.99'
 
@@ -35,7 +37,7 @@ echo '📂 Generating instances for equilibrium'
 for size in $SIZES; do
     for equilibrium in $EQUILIBRIUMS; do
         for i in $INSTANCE_SEQ; do
-            dir=Fixtures/time-quilibrium/${equilibrium}/${size}
+            dir=Fixtures/time-equilibrium/${equilibrium}/${size}
             mkdir -p $dir
             dimacs $size $STATIC_CLAUSES $STATIC_MAX_PRICE $dir/${i}
         done;

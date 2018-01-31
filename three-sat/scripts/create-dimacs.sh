@@ -1,3 +1,4 @@
+#!/bin/bash
 BIN=./dimacsgen
 
 if [ ! -f $BIN ]; then
