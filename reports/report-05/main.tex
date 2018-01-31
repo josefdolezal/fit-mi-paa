@@ -1,0 +1,248 @@
+\documentclass[czech]{article}
+
+\usepackage{natbib}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{a4wide}
+\usepackage[czech]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amstext}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{BI-PAA - Problém vážené splnitelnosti booleovské formule, úloha 5}
+\author{Josef Doležal}
+
+% Illustration
+\newcommand{\image}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{assets/#3}
+        \caption{#2}
+        \label{fig:#1}
+    \end{figure}
+}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Úvod}
+Problémem nalezení řešení vážené splnitelnosti boolevské formule se nazývá úloha, ve které je za úkol nalézt ohodnocení proměnných $x_1, \dots, x_n$ formule v konjuktivním normální tvaru takové, pro které je formule splnitelná a součet vah proměnných je maximální.
+
+Vstup tedy je množnina proměnných, kde každá má kladné ohodnocení.
+Dalším vstupem je množina klauzulí určující celkový tvar formule.
+
+Výstupem je číslo určující součet vah literálů, které jsou ohodnoceny jedničkou.
+Ze všech možných kombinací je správné řešení takové, kde součet ohodnocení je maximální.
+
+Tento problém je označován jako SAT (\textit{the SATisfiability problem}) a jeho speciálním případem je 3SAT, tedy formule kde každá klauzule má právě tři proměnné.
+Dle Cookovi věty je SAT \textit{NP-úplný} problém \citep{sat-npc}.
+
+\section{Zadání úlohy}
+
+Je dána booleovská formule $F$ proměnnných $X=(x_1, x_2, \dots, x_n)$ v konjunktivní normální formě (tj. součin součtů).
+Dále jsou dány celočíselné kladné váhy $W=(w_1, w_2, \dots, w_n)$.
+Najděte ohodnocení $Y=(y_1, y_2, \dots, y_n)$ proměnných $x_1$, $x_2$, \dots, $x_n$ tak, aby $F(Y)=1$ a součet vah proměnných, které jsou ohodnoceny jedničkou, byl maximální.
+
+Je přípustné se omezit na formule, v nichž má každá klauzule právě 3 literály (problém 3 SAT).
+Takto omezený problém je stejně těžký, ale možná se lépe programuje a lépe se posuzuje obtížnost instance.
+
+\section{Rámcový popis řešení}
+
+Z definice plyne, že pro tento problém neexistuje efektivní algoritmus, který by v polynomiálním čase vrátil správné řešení nebo rozhodl o neřešitelnosti úlohy.
+Z tohoto důvodu je k řešení využita pokročilá heauristika \textit{Simulované ochlazování}.
+
+Řešení úlohy je pomocí této optimalizační metody je inspirováno ve světě fyziky, konkrétně založené na metodě simulace žíhání oceli.
+Tato metoda si klade za cíl neuváznout při hledání řešení v lokálním maximu.
+Toho se tato metoda snaží dosáhnout tak, že v závislosti na aktuálním nastavení a náhodném rozhodnutí dočasně přijme i takové řešení, které je horší než aktuálně nalezené.
+Tím se liší od běžných heuristik, které běžně přijímají jen řešení lepší než aktuálně nalezené a tím jsou náchyl k uváznutí v lokálních extrémech.
+
+\subsection{Popis algoritmu}
+
+Tento algoritmus se skládá z hlavních částí.
+První částí je aktuální teplota -- ta určuje jak moc je algoritmus v dannou chvíli \uv{ochotný} přijmout horší řešení.
+Čím vyšší teplota je, tím spíše algoritmus neoptimální řešení přijme.
+Po dobu běhu algoritmu teplota stále klesá a tím klesá i \uv{ochota} přijímat horší řešení.
+
+Druhou částí je volba výchozího řešení -- náhodné konfigurace.
+Tato konfigurace je volena zcela náhodně a nemusí nutně být řešením problému, je ale nutné k hledání sousedních řešení.
+
+Třetí částí je \textit{equilibrium}, které určuje jak dlouho algoritmus setrvá v hledání řešení než dojde ke snížení teploty.
+
+V dalším kroku dochází ke hledání \textit{sousedního} řešení.
+Sousedním řešením se rozumí takové řešení, které má ve stavovém prostoru hranu vedoucí k aktuálnímu řešení -- tedy změna ohodnocení jedné konkrétní proměnné.
+
+Nová konfigurace je přijata jako aktuální řešení, pokud řešením a zároveň je lepší než aktuálně nalezené řešení.
+Kvalita řešení je určena hodnotící funkcí, která je dána jako součet vah proměnných ohodnocených jedničkou.
+
+V případě kdy je nové řešení horší než aktuální, počítá se pravděpodobnost přijetí na základě aktuální teploty.
+Pravděpodobnost je vypočítána podle vzorce $a = e^\frac{c_{old} - c_{new}}{t}$, kde $c_{old}$ je aktuální řešení, $c_{new}$ je nově nalezené řešení a $t$ je aktuální teplota.
+Tato rovnost je inspirována ve fyzice, kde popisuje pohyb částic v oceli při určité teplotě.
+Výsledek rovnosti je následně porovnán s náhodným čísle, je-li $a$ větší než náhodné číslo z intervalu $[0, 1]$, pak je konfigurace přijata.
+
+Po setrvání na jedné teplotě po předem definovanou dobu je snížena teplota a algoritmus prochází znovu od kroku 2.
+Algoritmus se zastaví po dosažení minimální definované teploty.
+
+Algoritmus se tedy skládá ze dvou vnořených smyček.
+Vnější reprezentuje aktuální teplotu.
+Vnitřní smyčka pro každou teplotu vybírá náhodné sousední řešení a určuje, jak dlouho toto řešení hledat.
+Počet iterací vnější smyčky je dán ochlazováním aktuální teploty.
+
+\subsection{Popis implementace}
+
+Pro implementaci jsem zvolil programovací jazyk Swift, který nabízí efektivní práci nejen z IDE, ale i příkazové řádky.
+Vstupní soubory vyžadují \textit{DIMACS} formát se zadanými váhami proměnných.
+
+Algoritmus pracuje s datovou strukturou instance \texttt{SATInstance}, která obsahuje množinu klauzulí a množinu literálů.
+Ty jsou reprezentovány rozhraním \texttt{Literal}, které implementuje proměnná \texttt{Formula} (zde jsem nezvolil adekvátní název, nicméně refaktorování Swiftu je poněkud nešťastné a tak jsem název ponechal) a negace proměnné \texttt{Not}.
+Negace si pouze drží referenci na literál který neguje, při změně hodnoty literálu se tedy změní ve všech klauzulích a patřičným způsobem se aplikují i negace.
+
+Struktura instance nabízí v rámci svého rozhraní metodu \texttt{solution} resp. \texttt{configurationValue}, vracející aktuální řešení resp. konfiguraci.
+Nové řešení algoritmus hledá prohozením hodnoty náhodného literálu a následným vypočítáním nové ceny a splnitelnosti.
+Splnitelnost formule je hledána průchodem všech klauzulí.
+Tuto část algoritmu jsem implementoval ve funkcionálním stylu (s využitím \texttt{map}, \texttt{filter} a \texttt{reduce}), což se při měření časové složitosti ukázalo jako velmi nevhodná volba.
+
+Vzhledem k využití množin jako kolekcí pro uložení literálů umí program zpracovat klauzule s libovolným počtem literálů či jejich negací, neni tedy omezen 3SAT.
+Všechna měření jsem ale prováděl právě na instancích 3SAT problému.
+
+Správnost algoritmu jsem ověřoval u vybraných instancí algoritmem hrubé síly.
+Vzhledem k časové náročnosti jsem ale neprováděl rozsáhlé testování odchylek.
+
+Pro zvýšení přesnosti algoritmus zkusí v prvním kroku \uv{uhádnout} konfiguraci, která je zároveň řešením.
+V měřeních jsem nezaznamenal významný dopad na časovou složitost, nicméně přesnost výsledného řešení se zvýšila.
+
+Jako další optimalizaci výsledného řešení jsem implementoval paměť nejlepšího nalezeného řešení, které je vráceno v případě, že algoritmus se vlivem přijetí horšího výsledku přesunul do lokálního maxima.
+
+\subsection*{Měnitelné parametry}
+
+Z výše uvedeného popisu algoritmu vyplývá, že měnitelnými parametry algoritmu jsou:
+
+\begin{itemize}
+    \item počáteční teplota,
+    \item počet hledání sousedního řešení pro aktuální teplotu,
+    \item rychlost ochlazování aktuální teploty.
+\end{itemize}
+
+Pro každý z nich v práci zkoumám časovou náročnost programu pro různý počet literálů.
+
+\section{Výsledky měření}
+
+Měření znázorňují průměrné hodnoty pro $20$ instancí problému.
+Časová složitost byla měřena jako procesorový čas, který byl potřebný přímo k výpočtu.
+Každý graf sleduje změnu parametru pro více velikostí vstupu (konkrétně $27, 30, 32, 35, 37$ a $40$).
+
+\subsection{Generování vstupů}
+
+Program obsahuje rozhraní pro ovládání z příkazové řádky (nápověda se zobrazí po spuštění s přepínačem \texttt{--help}).
+Jako vstup je možné zadat parametry pro konfiguraci algoritmu simulovaného ochlazování a seznam vstupních souborů.
+Výstupem je číslo udávající průměrný čas potřebný pro výpočet jednoho ze zadaných vstupů.
+
+Vstupní soubory jsem generoval programem dostupným z \cite{fw-gen}.
+Generování je automatizováno naskriptovanými scénáři, které je možné spustit příkazem \texttt{make}:
+
+\begin{itemize}
+    \item \texttt{fixtures} -- generuje adresářovou strukturu a vstupy pro měření,
+    \item \texttt{measure} -- spustí měření časové složitosti programu,
+    \item \texttt{graphs} -- vygeneruje z naměřených hodnot grafy programem \texttt{gnuplot}.
+\end{itemize}
+
+\subsection{Počáteční teplota}
+
+Počáteční teplotu algoritmu jsem volil podle vzorce $n*k$, kde $n$ je počet literálů a $k$ a parametr měněný v rámci měření.
+Protože je měření prováděno pro více $n$, zvolil jsem jako referenční $n$ hodnotu $25$.
+
+\subsubsection*{Konfigurace}
+
+\begin{tabular}{ | l | l | }
+    \hline
+    Parametr & Hodnota \\ \hline \hline
+    Počáteční teplota & $[225, 350]$, $k \in 9\dots14$ \\
+    Iterace vnitřní smyčky & $400$ \\
+    Rychlost ochlazování & $0.95 \cdot \textrm{aktuální teplota}$ \\ \hline
+\end{tabular}
+
+\subsubsection*{Rychlost běhu}
+
+\image{initial-temperature}{Časová závislost výpočtu na počáteční teplotě}{initial-temperature.png}
+
+\subsubsection*{Komentář}
+
+Z grafu \ref{fig:initial-temperature} lze vyčíst, že až na jednu výjimku je růst převážně lineární.
+Dle očekávání mají časovou složitost vyšší ty instance, kde počáteční teplota byla vyšší (dáno vyšším počtem vnějších cyklů).
+Za zmínku stojí rozpětí hodnot.
+Rozdíl nejpomalejšího a nejrychlejší běhu je pouse $30$ ms, což je vzhledem na počet průchodů jen malá změna.
+
+\subsection{Iterace vnitřní smyčky}
+
+\subsubsection*{Konfigurace}
+
+\begin{tabular}{ | l | l | }
+    \hline
+    Parametr & Hodnota \\ \hline \hline
+    Počáteční teplota & $400$ \\
+    Iterace vnitřní smyčky & $[100\dots500]$ \\
+    Rychlost ochlazování & $0.95 \cdot \textrm{aktuální teplota}$ \\ \hline
+\end{tabular}
+
+\subsubsection*{Rychlost běhu}
+
+\image{equilibrium}{Časová závislost výpočtu na průběhu vnitřní smyčky}{equilibrium.png}
+
+\subsubsection*{Komentář}
+
+Obrázek \ref{fig:equilibrium} ukazuje podle očekávání, že časová složitost roste s počtem vnitřních cyklů.
+Je ale naopak také patrné, že celkový běh není pro konkrétní velikost vnitřního cyklu nijak výrazně závislý na počtu prvků.
+
+\subsection{Rychlost ochlazování}
+
+\subsubsection*{Konfigurace}
+
+\begin{tabular}{ | l | l | }
+    \hline
+    Parametr & Hodnota \\ \hline \hline
+    Počáteční teplota & $400$ \\
+    Iterace vnitřní smyčky & $400$ \\
+    Rychlost ochlazování & $0.8\dots0.99 \cdot \textrm{aktuální teplota}$ \\ \hline
+\end{tabular}
+
+\subsubsection*{Rychlost běhu}
+
+\image{annealing-factor}{Časová závislost výpočtu na rychlosti ochlazování}{annealing-factor.png}
+
+\subsubsection*{Komentář}
+
+Z grafů \ref{fig:annealing-factor} lze vyčíst, že přestože rychlým ochlazováním rapidně klesá časová složitost, relativní naopak roste.
+Z naměřených výsledků se jako optimální faktor snížení teploty jeví násobek $0.9$.
+Zajímavým pozorováním je růst časové složitosti pro instance o $37$ prvcích, kde se pro všechna měření zvedl čas téměř sedminásobně.
+
+\section{Závěr}
+
+Naměřená data pro časovou náročnost odpovídají předpokladům, že se zvyšujícími se nároky je doba výpočtu vyšší.
+Pro zkoumané instance je navíc časová náročnost i u zvýšených požadavků přijatelná -- výsledky jsou téměř okamžité.
+
+Z počátku měření jsem narazil na neodpovídající časovou náročnost způsobenou pravděpodobně neoptimální implementací.
+Využití funkcionálních principů bohužel vedlo ke zbytečné alokaci paměti a kopírování objektů (např. aplikací \texttt{map} a \texttt{filter} za sebou vedlo k vytvoření dvou nových kolekcí a jejich dvojitému průchodu) což spolu s velkým množstvím iterací zpomalovalo běh.
+I přes částečnou optimalizaci kódu trval výpočet jednotky vteřin i pro malé instance o velikosti $25$ literálů.
+
+Z toho důvodu jsem se rozhodl pro využití optimalizací kompilátoru.
+K mému velkému překvapení právě toto vedlo ke snížení časové náročnosti zhruba na jednu padesátinu.
+
+Z uvedených měření mi jako idelání konfigurace vzešly následující hodnoty: \\
+
+\begin{tabular}{ | l | l | }
+    \hline
+    Parametr & Hodnota \\ \hline \hline
+    Počáteční teplota & $300$ \\
+    Iterace vnitřní smyčky & $400$ \\
+    Rychlost ochlazování & $0.9$ \\ \hline
+\end{tabular}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
