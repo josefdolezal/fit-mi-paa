@@ -29,7 +29,7 @@ class SATInstance {
 
     func configrationValue() -> SATSolution {
         let satisfiable = self.satisfiable()
-        let weight = clauses.reduce(0) { $0 + $1.valuatedWeight() }
+        let weight = literals.reduce(0) { $0 + $1.valuatedWeight }
 
         return SATSolution(weight: weight, satisfiable: satisfiable)
     }

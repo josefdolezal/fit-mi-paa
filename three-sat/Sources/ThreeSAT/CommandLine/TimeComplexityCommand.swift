@@ -15,14 +15,18 @@ let timeComplexityCommand = command(
     measureTimeComplexity)
 
 fileprivate func measureTimeComplexity(initialTemperature: Double, annealingFactor: Double, equilibrium: Int, inputs: [String]) throws {
-    let solver = SimulatedAnnealingSolver(initialTemperature: initialTemperature, annealingFactor: annealingFactor, equilibrium: equilibrium)
+    let solver = BruteForceSolver()//(initialTemperature: initialTemperature, annealingFactor: annealingFactor, equilibrium: equilibrium)
     let satInstances = try InstanceSetupService.setup(fromFiles: inputs)
 
-    let durations = satInstances.map { instance in
-        TimeComplexityMeasurement.measure {
+    let durations = satInstances.map { instance -> TimeComplexityMeasurement.Duration<SATSolution?> in
+
+        assert(instance.configrationValue().weight == 0)
+
+        return TimeComplexityMeasurement.measure {
             return solver.solve(instance: instance)
         }
     }
 
     print(durations)
+    print(durations.map({ $0.duration }).average() ?? 0.0)
 }

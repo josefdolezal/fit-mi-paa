@@ -18,6 +18,7 @@ protocol Literal: class, CustomStringConvertible {
     var value: Bool { get set }
     var weight: Int { get }
     var valuatedWeight: Int { get }
+    var additionWeight: Int { get }
 }
 
 class Formula: Literal {
@@ -25,7 +26,9 @@ class Formula: Literal {
 
     let weight: Int
 
-    var valuatedWeight: Int { return value.map { $0 ? weight : 0 } }
+    var valuatedWeight: Int { return value ? weight : 0 }
+
+    var additionWeight: Int { return value ? weight : -weight }
 
     var description: String { return "Literal(\(value))" }
 
@@ -47,7 +50,9 @@ class Not: Literal {
 
     var weight: Int { return formula.weight }
 
-    var valuatedWeight: Int { return value.map { $0 ? formula.weight : 0 } }
+    var valuatedWeight: Int { return 0 }
+
+    var additionWeight: Int { return value ? -weight : weight }
 
     let formula: Formula
 

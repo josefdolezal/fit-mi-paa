@@ -24,7 +24,7 @@ class SimulatedAnnealingSolver: SATSolver {
     }
 
     func solve(instance: SATInstance) -> SATSolution? {
-        var solution = generateSolution(for: instance)
+        var solution = randomSolution(for: instance) ?? generateSolution(for: instance)
         var bestSolution = solution
         var temperature = initialTemperature
 
@@ -59,7 +59,7 @@ class SimulatedAnnealingSolver: SATSolver {
     }
 
     private func solutionAcceptanceProbability(old: SATSolution, new: SATSolution, at temperature: Double) -> Double {
-        let exponent = Double(old.weight - new.weight) / temperature
+        let exponent = Double(new.weight - old.weight) / temperature
 
         return exp(exponent)
     }
@@ -68,13 +68,11 @@ class SimulatedAnnealingSolver: SATSolver {
 
     private func nextConfiguration(for instance: SATInstance, basedOn oldSolution: SATSolution) -> SATSolution {
         let updatedLiteralIndex = RandomService.next(withUpperBound: instance.literals.count)
-        let newLiteralValue = !instance.literals[updatedLiteralIndex].value
-        let weightAdditionMultiplier = newLiteralValue ? -1 : 1
+        let literal = instance.literals[updatedLiteralIndex]
 
-        instance.literals[updatedLiteralIndex].value = newLiteralValue
+        literal.value.toggle()
 
-        return SATSolution(weight: oldSolution.weight + weightAdditionMultiplier,
-                           satisfiable: instance.satisfiable())
+        return instance.configrationValue()
     }
 
     // MARK: - Initial solution
@@ -82,7 +80,7 @@ class SimulatedAnnealingSolver: SATSolver {
     // Try to randomly find solution
     // Not used since it is uneffecient
     private func randomSolution(for instance: SATInstance) -> SATSolution? {
-        for _ in 0...10_000 {
+        for _ in 0...5000 {
             let solution = generateSolution(for: instance)
 
             if solution.satisfiable {
