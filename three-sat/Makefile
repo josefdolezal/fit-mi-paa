@@ -7,6 +7,9 @@ fixtures: dimacs
 measure: release
 	./scripts/measure.sh
 
+graphs:
+	./scripts/create-graphs.sh
+
 clean:
 	swift package clean
 	rm -rf Fixtures

@@ -15,7 +15,7 @@ rm -rf measurement
 mkdir Measurement
 
 echo '📈 Prepairing for initial temperature measurement'
-for temperature in $TEMPERATURES; do echo "$temperature" >> Measurement/initial-temperatures; done
+for size in $SIZES; do echo "$size" >> Measurement/initial-temperatures.dat; done
 
 echo '🏃 Running initial temperature measurement'
 for size in $SIZES; do
@@ -30,12 +30,12 @@ for size in $SIZES; do
         temp="${temp}${average}\n"
     done;
 
-    result=$(paste -d '\t' Measurement/initial-temperatures <(echo -e "$temp"))
-    echo -e "$result" > Measurement/initial-temperatures
+    result=$(paste -d '\t' Measurement/initial-temperatures.dat <(echo -e "$temp"))
+    echo -e "$result" > Measurement/initial-temperatures.dat
 done;
 
 echo '📈 Prepairing for equilibrium measurement'
-for equilibrium in $EQUILIBRIUMS; do echo -e "$equilibrium\t" >> Measurement/equilibriums; done
+for size in $SIZES; do echo "$size" >> Measurement/equilibriums.dat; done
 
 echo '🏃 Running equilibrium measurement'
 for size in $SIZES; do
@@ -50,12 +50,12 @@ for size in $SIZES; do
         temp="${temp}${average}\n"
     done;
 
-    result=$(paste -d '\t' Measurement/equilibriums <(echo -e "$temp"))
-    echo -e "$result" > Measurement/equilibriums
+    result=$(paste -d '\t' Measurement/equilibriums.dat <(echo -e "$temp"))
+    echo -e "$result" > Measurement/equilibriums.dat
 done;
 
 echo '📈 Prepairing for factor measurement'
-for factor in $ANNEALING_FACTORS; do echo -e "$factor\t" >> Measurement/factors; done
+for size in $SIZES; do echo "$size" >> Measurement/factors.dat; done
 
 echo '🏃 Running annealing factor measurement'
 for size in $SIZES; do
@@ -70,6 +70,6 @@ for size in $SIZES; do
         temp="${temp}${average}\n"
     done;
 
-    result=$(paste -d '\t' Measurement/factors <(echo -e "$temp"))
-    echo -e "$result" > Measurement/factors
+    result=$(paste -d '\t' Measurement/factors.dat <(echo -e "$temp"))
+    echo -e "$result" > Measurement/factors.dat
 done;
