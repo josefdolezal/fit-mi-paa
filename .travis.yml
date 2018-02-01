@@ -5,3 +5,4 @@ install:
   - brew install marathon-swift
 script:
   - (cd backpack-problem; make test)
+  - (cd three-sat; make build)
