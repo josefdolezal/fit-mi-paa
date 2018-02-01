@@ -4,7 +4,7 @@ install:
 - brew install marathon-swift
 script:
 - (cd backpack-problem; make test)
-- (cd three-sat; make build)
+- (cd three-sat; make release)
 deploy:
   provider: releases
   api_key:
