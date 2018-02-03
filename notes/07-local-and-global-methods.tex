@@ -1,0 +1,25 @@
+\section{Přednáška 7 -- Lokální a globální metody}
+
+\begin{description}
+    \item[Stav] Algoritmus $A$ s konfiguračními proměnnými $X$ a vnitřními proměnnými $Z$.
+    Stav je každé ohodnocení proměnných $X \cup Z$.
+    \item[Stavový prostor] $S$ je množina všech stavů, $Q$ je množina operátorů $S \to S$ s vlastností $(\forall s_i, q_i) (q_i(s_i) \neq s_i)$.
+    Stavový prostor je dvojice $(S,Q)$.
+    \item[Okolí] Množina stavů dosažitelná z $s$ aplikací akce $q$.
+\end{description}
+
+\subsection{Prohledávání stavového prostoru}
+
+\begin{description}
+    \item[Úplná strategie] navštíví všechny stavy kromě těch, které nemohou dát optimální řešení.
+    \item[Systematická strategie] Navštíví každý stav nejvýše jednou.
+    Naleznou optimální řešení, pokud existuje (nejhůře hrubá síla).
+\end{description}
+
+\subsection{Lokální heuristické metody}
+
+\begin{description}
+    \item[Pouze nejlepší] Zastaví se v momentě, kdy v nějakém stavu už neexistuje zlepšující tah (přesun k sousednímu řešení).
+    \item[První zlepšení] Zastaví se v momentě, kdy v nějakém stavu už neexistuje zlepšující tah.
+    Metoda vrátí řešení při prvním zlepšení.
+\end{description}
