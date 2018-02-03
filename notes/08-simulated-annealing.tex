@@ -1,0 +1,8 @@
+\section{Přednáška 8 -- Simulované ochlazování}
+
+Heuristika umožňující vyhnutí se lokálnímu extrémům za pomoci dočasného přijetí horšího řešení.
+Ochota přijetí horšího řešení je dána parametrem teploty, který je postupně snižován.
+S vyšší teplotou roste pravděpodobnost přijetí velkého zhoršení.
+Pravděpodobnost s jakou se přijme horší řešení je řízené náhodou.
+
+Pravděpodobost přijetí je dána vzorcem $e^{\frac{c_{new} - c_{old}}{t}}$.
