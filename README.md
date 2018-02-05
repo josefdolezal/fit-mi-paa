@@ -1,11 +1,11 @@
 # MI-PAA: Problémy a algoritmy 2017/18 [![Build Status](https://travis-ci.com/josefdolezal/fit-mi-paa.svg?token=AxpSW7yys3aiQpPG9zMW&branch=master)](https://travis-ci.com/josefdolezal/fit-mi-paa)
 
+Repozitář s domácími úlohami předmětu MI-PAA, vyučovaného na FIT ČVUT (@FIT_CTU).
+Seznam materiálů k ostatním předmětům je v [samostatném repozitáři](https://github.com/josefdolezal/fit-cvut).
+
 | Přednášející | Cvičící         | Běh předmětu |
 |--------------|-----------------|--------------|
-| Jan Schmidt | Jiří Dostál     | ZS 2017/18   |
-
-Repozitář domácím úlohám předmětu MI-PAA, vyučovaného na FIT ČVUT (@FIT_CTU).
-Seznam materiálů k ostatním předmětům je v [samostatném repozitáři](https://github.com/josefdolezal/fit-cvut).
+| Jan Schmidt  | Jiří Dostál     | ZS 2017/18   |
 
 
 ## Řešené úlohy
