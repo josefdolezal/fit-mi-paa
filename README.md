@@ -1,27 +1,53 @@
-# fit-mi-paa [![Build Status](https://travis-ci.com/josefdolezal/fit-mi-paa.svg?token=AxpSW7yys3aiQpPG9zMW&branch=master)](https://travis-ci.com/josefdolezal/fit-mi-paa)
+# MI-PAA: Problémy a algoritmy 2017/18 [![Build Status](https://travis-ci.com/josefdolezal/fit-mi-paa.svg?token=AxpSW7yys3aiQpPG9zMW&branch=master)](https://travis-ci.com/josefdolezal/fit-mi-paa)
 
-# Repozitář k předmětu MI-PAA 2017/18
+| Přednášející | Cvičící         | Běh předmětu |
+|--------------|-----------------|--------------|
+| Jan Schmidt | Jiří Dostál     | ZS 2017/18   |
+
+Repozitář domácím úlohám předmětu MI-PAA, vyučovaného na FIT ČVUT (@FIT_CTU).
+Seznam materiálů k ostatním předmětům je v [samostatném repozitáři](https://github.com/josefdolezal/fit-cvut).
+
 
 ## Řešené úlohy
 * [Problém batohu](backpack-problem)
+  * Metoda hrubé síly a heurisitka poměr cena/váha (úloha 1)
+  * Metoda větví a hranic, dynamické programování (úloha 2)
+  * Zkoumání vlivu změny parametrů generování na čas/odchylku (úloha 3)
+  * Pokročilá heuristika - Simulované ochlazování (úloha 4)
+* [Problém splnitelnosti vážené booleovské formu](three-sat)
+  * Implementace s využitím metody *Simulované ochlazování* (úloha 5)
 
-## Kompilace a testování
-Zdrojové kódy jsou psané v jazyce Swift 4, ke kompilaci je nutné využít Xcode 9.
+## Závěrečné zprávy
 
-Pro kompilaci i testování je připraven Makefile, který využívá `xcodebuild`.
-
-### Kompilace
-
-Pro kompilaci pomocí Makefile slouží příkaz:
-
-```bash
-$ make build
-```
-
-### Testování
-
-Část aplikace je pokryta Unit testy, lze je spustit příkazem:
+Zdrojové kódy k závěrečným zprávám jsou umístěné v adresáři [repots](reports). Kompilace všechn zpráv je možná pomocí příkazu:
 
 ```bash
-$ make test
+make reports
 ```
+
+Jednotlivé reporty je možné zkompilovat příkazem `make report-<number>` kde `<number>` je číslo příslušné reportu, např:
+
+```bash
+make report-1
+```
+
+Zkompilované zprávy jsou dostupné na GitHubu v záložce [Releases](https://github.com/josefdolezal/fit-mi-paa/releases).
+
+## Výpisky
+
+Výpisky na semestrální test (cca do 6. přednášky) jsou v adresáři [notes](notes). Zkompilovat je lze příkazem:
+
+```bash
+make lecture-notes
+```
+
+Zkompilované se nachází v záložce [Releases](https://github.com/josefdolezal/fit-mi-paa/releases).
+
+## Poznámka
+Uvedené zdrojové kódy nebo jejich části slouží pro inspiraci a jako demonstrace
+možného řešení problému. Důrazně nedoporučuji cizí zdrojové kódy odevzdávat/vydávat za vlastní. Pokud budete přebírat část kódu, uveďte řádně autora - předejdete tím možnému obvinění z plagiátorství ze strany školy.
+
+Zveřejněné kódy a úlohy se mohou lišit od těch, které jsem ve škole odevzdal, nenesu tedy odpovědnost za jejich funkčnost.
+
+## Licence
+Repozitář je šířený pod licencí [MIT](LICENSE).
