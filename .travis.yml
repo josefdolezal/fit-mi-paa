@@ -5,11 +5,13 @@ install:
 script:
 - (cd backpack-problem; make test)
 - (cd three-sat; make release)
+- make pdfs
 deploy:
   provider: releases
   api_key:
     secure: TmMNMXaB6KBXeg/TAoFPFKImHQyeYvuou75ZKjwvqoh3Cl5DfWjqWwM6/XqsDzi5Upk26EastoIVw8+eBZMTnFYitOiLNzIjJkJ2mV/PpGD81iGXWzLvUHvLElqd4bQuy+QfXaGeYG2ltwI763TfUVgMvp1MBFied/xJgNMGjBqcNVprHht+SUxc5BEJNWrzPh8R4YqurnEDTrUGXfxoNyoGN11C+OsR24diHKhm06bNmlIIHM/pU+1nEUkGIDoiBo8soxBqeDKwhJKV4UevzALOBaJ+totPeTpybp15o/nVBy07E2FW/0wkTw69zt9uOXCbujPwyvCGDpHPEJg60PRxDcgvK0WTwhqBAZZR+Ymn0cFaIcTuzP8D6NumQsS9ZpR8ODS3X1gNQSFMKwKh05+I4H4xMXLdJcaadvH5YgOLZU94YjYxWd7P5eg2UPqN9NlT0m1bNvOguZa3srSD/XDEtpz5F94IC6JL84YFU08VPO/GpxQro9R0wiSTIMpOYuULu9tjtSI6dw4oUAV1NQT7vr0uLhKmhDV05qlTJL/qSBsMzKk0hrVJjkfTJFDTIh4cSl1QJdZY3v+lDIbQT/xgwMDPSHCSTa6PB9HqLU7z1GQTZ9RBJXxdpTUVEE74Dw9HGntPvr/NkmrKK3Oo36bjkIXx53EXgQR1CYZtUHE=
   file:
+    - mi-paa.pdf
     - report-01.pdf
     - report-02.pdf
     - report-03.pdf

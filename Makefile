@@ -1,3 +1,5 @@
+pdfs: reports lecture-notes
+
 reports: report-1 report-2 report-3 report-4 report-5
 
 report-1:
@@ -14,3 +16,9 @@ report-4:
 
 report-5:
 	latexmk -pdf reports/report-05/report-05
+
+lecture-notes:
+	latexmk -pdf notes/mi-paa
+
+clear:
+	latexmk -c
