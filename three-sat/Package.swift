@@ -13,9 +13,5 @@ let package = Package(
             dependencies: [
                 "Commander"
             ]),
-        .testTarget(
-            name: "ThreeSATTests",
-            dependencies: ["ThreeSAT"]
-        )
     ]
 )
