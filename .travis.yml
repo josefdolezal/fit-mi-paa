@@ -10,7 +10,6 @@ matrix:
         - pip install pygments
       script:
         - make pdfs
-
     - os: osx
       language: objective-c
       osx_image: xcode9
@@ -20,12 +19,13 @@ matrix:
         - (cd backpack-problem; make test)
         - (cd three-sat; make release)
 deploy:
-        provider: releases
-        api_key:
-          secure: TmMNMXaB6KBXeg/TAoFPFKImHQyeYvuou75ZKjwvqoh3Cl5DfWjqWwM6/XqsDzi5Upk26EastoIVw8+eBZMTnFYitOiLNzIjJkJ2mV/PpGD81iGXWzLvUHvLElqd4bQuy+QfXaGeYG2ltwI763TfUVgMvp1MBFied/xJgNMGjBqcNVprHht+SUxc5BEJNWrzPh8R4YqurnEDTrUGXfxoNyoGN11C+OsR24diHKhm06bNmlIIHM/pU+1nEUkGIDoiBo8soxBqeDKwhJKV4UevzALOBaJ+totPeTpybp15o/nVBy07E2FW/0wkTw69zt9uOXCbujPwyvCGDpHPEJg60PRxDcgvK0WTwhqBAZZR+Ymn0cFaIcTuzP8D6NumQsS9ZpR8ODS3X1gNQSFMKwKh05+I4H4xMXLdJcaadvH5YgOLZU94YjYxWd7P5eg2UPqN9NlT0m1bNvOguZa3srSD/XDEtpz5F94IC6JL84YFU08VPO/GpxQro9R0wiSTIMpOYuULu9tjtSI6dw4oUAV1NQT7vr0uLhKmhDV05qlTJL/qSBsMzKk0hrVJjkfTJFDTIh4cSl1QJdZY3v+lDIbQT/xgwMDPSHCSTa6PB9HqLU7z1GQTZ9RBJXxdpTUVEE74Dw9HGntPvr/NkmrKK3Oo36bjkIXx53EXgQR1CYZtUHE=
-        file_glob: true
-        file: sd.pdf
-        skip_cleanup: true
-        on:
-          repo: josefdolezal/fit-mi-paa
-          tags: true
+  provider: releases
+  api_key:
+    secure: jRj3HLz5hBsD/yxOn0c1h5+qSevTPvBLw7tpzZs08kDwEIdS7V6T4qVzEz2pr14Q8aw9z5fv5CukfZRQqWaDknUTni7irFAUbwhqKIRjFjtA9mGaMCkcVNL22KcKSVjffZX2i0Fhu7eVhravVz/24DoO5yCRPJX5Cyj3oohIx9My52MEoSFo9rBaY1WRMxIY53le4cPkOdlF0A1Ff/ccW/WGRsSUUHq/EOPLOFRp9twNFUbRJvWLAB1E4Lasa/a8rcdlDT+tWLXasC/zfreW6h2mDan0cknl1TsF4pu5CZAKvQyGyp8pNjsXYj0GT7RqPX+j7NlpAFbLI4/CB9siv89Qp+abOmXG2RTrnRSCsxYPLadzgnF5/uncMCV95n87ec/HN4j3dchnLI39A53nywUq4Qismu/CzIQ4Uf87lr+Ipyhr2GykxWXJK/0UsPKfgc4I81OcE75WWnkSsP7NDHzQaiZHM+UZBfwm5uX4f0Qa2mZdeAunf685DmwN1rRh8gL6AguZ5M9+mzUHKzQFOnvR17OdpdANQ6n3hw8Mt54Ex/1sHSe/DtqLpYOvvxUTUYydulvh+qNfHUhxWH7XKEs/7IFgJfniMy99406TZe7a0X2mL+pkelkUBaMFyP4CWOQAIC/e/cx4iBiSDAZww0+vpChfDKRqXza/RHXA3iA=
+  file_glob: true
+  file: "*.pdf"
+  skip_cleanup: true
+  on:
+    repo: josefdolezal/fit-mi-paa
+    tags: true  
+    condition: $TRAVIS_OS_NAME = linux
