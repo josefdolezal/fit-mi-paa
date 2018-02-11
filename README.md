@@ -14,18 +14,18 @@ Seznam materiálů k ostatním předmětům je v [samostatném repozitáři](htt
   * Metoda větví a hranic, dynamické programování (úloha 2)
   * Zkoumání vlivu změny parametrů generování na čas/odchylku (úloha 3)
   * Pokročilá heuristika - Simulované ochlazování (úloha 4)
-* [Problém splnitelnosti vážené booleovské formu](three-sat)
+* [Problém splnitelnosti vážené booleovské formule](three-sat)
   * Implementace s využitím metody *Simulované ochlazování* (úloha 5)
 
 ## Závěrečné zprávy
 
-Zdrojové kódy k závěrečným zprávám jsou umístěné v adresáři [repots](reports). Kompilace všechn zpráv je možná pomocí příkazu:
+Zdrojové kódy k závěrečným zprávám jsou umístěné v adresáři [repots](reports). Kompilace všech zpráv je možná pomocí příkazu:
 
 ```bash
 make reports
 ```
 
-Jednotlivé reporty je možné zkompilovat příkazem `make report-<number>` kde `<number>` je číslo příslušné reportu, např:
+Jednotlivé reporty je možné zkompilovat příkazem `make report-<number>` kde `<number>` je číslo příslušného reportu, např:
 
 ```bash
 make report-1
